@@ -152,14 +152,14 @@ const clubdetail = [
   {
     id: 26,
     img_url: "./src/images/IEEE-symbol.jpg",
-    name: "UNESQUO",
+    name: "Unesquo",
     desc: "Best coding club of BIT.",
   },
   {
-    id: 26,
+    id: 27,
     img_url: "./src/images/IEEE-symbol.jpg",
     name: "Unnat Bharat Abhiyan",
     desc: "Best coding club of BIT.",
   },
 ];
-export default clubdetail
+export default clubdetail;
