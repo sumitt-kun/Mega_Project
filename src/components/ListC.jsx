@@ -3,6 +3,7 @@ import clubdetail from "../clubdetails";
 
 function ListC() {
   const [sortBy, setSortBy] = useState("default");
+  const [filterBy, setFilterBy] = useState("None");
   let sortedItems = clubdetail;
   if (sortBy === "default") sortedItems = clubdetail;
   if (sortBy === "name-asc")
@@ -13,20 +14,44 @@ function ListC() {
     sortedItems = clubdetail
       .slice()
       .sort((a, b) => b.name.localeCompare(a.name));
+
+  let filteredItems = sortedItems;
+  if (filterBy === "none") filteredItems = sortedItems;
+  if (filterBy === "tech")
+    filteredItems = sortedItems.filter((e) => e.type === "technical");
+  if (filterBy === "cult")
+    filteredItems = sortedItems.filter((e) => e.type === "cultural");
   return (
     <div className="bg-[url('../src/images/red-bg.png')] bg-cover bg-center bg-no-repeat">
-      <h2 className="text-bold my-3 mb-6 text-center text-3xl font-bold">
+      <h2 className="text-bold my-3 mb-6 pt-5 text-center text-3xl font-bold">
         List of Clubs of BIT Mesra
       </h2>
-      <div className="text-center">
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-          <option value="default">Sort-By-Default</option>
-          <option value="name-asc">Sort By Name in ascending</option>
-          <option value="name-desc">Sort By Name in descending</option>
-        </select>
+      <div className="flex flex-wrap justify-center pb-3 text-center">
+        <div className="rounded-2xl px-2.5">
+          <select
+            className="  h-8 rounded-2xl text-xl font-semibold"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="default">Sort-By:Default</option>
+            <option value="name-asc">Sort By Name in ascending</option>
+            <option value="name-desc">Sort By Name in descending</option>
+          </select>
+        </div>
+        <div className="rounded-2xl px-2.5">
+          <select
+            className="h-8 rounded-2xl  text-xl font-semibold"
+            value={filterBy}
+            onChange={(e) => setFilterBy(e.target.value)}
+          >
+            <option value="none">Filter-By:None</option>
+            <option value="tech">Technical</option>
+            <option value="cult">Cultural</option>
+          </select>
+        </div>
       </div>
       <ul className="m-2 flex h-auto flex-wrap items-center justify-center gap-8">
-        {sortedItems.map((ele) => (
+        {filteredItems.map((ele) => (
           <ClubList ele={ele} key={ele.id} />
         ))}
       </ul>
