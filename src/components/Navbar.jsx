@@ -14,7 +14,7 @@ function Navbar() {
     return (
       <div className="absolute grid grid-cols-3 w-full items-center justify-between p-4">
         <div className="z-20">
-        <h1 className="text-xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-800 to-red-500">CLUBCONNECT</h1>
+        <h1 className="webkit text-xl md:text-4xl font-extrabold text-transparent bg-clip-text">CLUBCONNECT</h1>
         </div>
         <div className="z-20">
         <img className="w-1/4 h-auto m-auto rounded-full shadow-2xl shadow-white" src="/src/images/bit.png" alt="bit-logo" />
