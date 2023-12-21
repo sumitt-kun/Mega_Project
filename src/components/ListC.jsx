@@ -22,14 +22,15 @@ function ListC() {
   if (filterBy === "cult")
     filteredItems = sortedItems.filter((e) => e.type === "cultural");
   return (
-    <div className="bg-[url('../src/images/red-bg.png')] bg-cover bg-center bg-no-repeat">
-      <h2 className="text-bold my-3 mb-6 pt-5 text-center text-3xl font-bold">
-        List of Clubs of BIT Mesra
+    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover md:bg-cover bg-center bg-no-repeat">
+      <h2 className="my-1 mb-6 p-5 text-left text-5xl md:text-6xl font-serif text-white bg-gradient-to-r from-red-600 to-pink-800">
+        Find Your Interests
       </h2>
-      <div className="flex flex-wrap justify-center pb-3 text-center">
-        <div className="rounded-2xl px-2.5">
+      <div className="md:grid grid-cols-2 justify-center text-center">
+        <div className="rounded-2xl p-3">
           <select
-            className="  h-8 rounded-2xl text-xl font-semibold"
+            className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
+            text-center hover:text-black md:text-2xl text-white"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -38,9 +39,10 @@ function ListC() {
             <option value="name-desc">Sort By Name in descending</option>
           </select>
         </div>
-        <div className="rounded-2xl px-2.5">
+        <div className="rounded-2xl p-3">
           <select
-            className="h-8 rounded-2xl  text-xl font-semibold"
+            className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
+            text-center hover:text-black md:text-2xl text-white"
             value={filterBy}
             onChange={(e) => setFilterBy(e.target.value)}
           >
@@ -50,7 +52,7 @@ function ListC() {
           </select>
         </div>
       </div>
-      <ul className="m-2 flex h-auto flex-wrap items-center justify-center gap-8">
+      <ul className="flex h-auto flex-wrap items-center justify-center gap-8">
         {filteredItems.map((ele) => (
           <ClubList ele={ele} key={ele.id} />
         ))}
