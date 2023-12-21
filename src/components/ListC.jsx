@@ -22,15 +22,15 @@ function ListC() {
   if (filterBy === "cult")
     filteredItems = sortedItems.filter((e) => e.type === "cultural");
   return (
-    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover md:bg-cover bg-center bg-no-repeat">
-      <h2 className="my-1 mb-6 p-5 text-left text-5xl md:text-6xl font-serif text-white bg-gradient-to-r from-red-600 to-pink-800">
+    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-cover">
+      <h2 className="my-1 mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
         Find Your Interests
       </h2>
-      <div className="md:grid grid-cols-2 justify-center text-center">
+      <div className="grid-cols-2 justify-center text-center md:grid">
         <div className="rounded-2xl p-3">
           <select
             className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
-            text-center hover:text-black md:text-2xl text-white"
+            text-center text-white hover:text-black md:text-2xl"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -42,7 +42,7 @@ function ListC() {
         <div className="rounded-2xl p-3">
           <select
             className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
-            text-center hover:text-black md:text-2xl text-white"
+            text-center text-white hover:text-black md:text-2xl"
             value={filterBy}
             onChange={(e) => setFilterBy(e.target.value)}
           >
