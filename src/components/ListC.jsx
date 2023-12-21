@@ -22,8 +22,8 @@ function ListC() {
   if (filterBy === "cult")
     filteredItems = sortedItems.filter((e) => e.type === "cultural");
   return (
-    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-cover">
-      <h2 className="my-1 mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
+    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
+      <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
         Find Your Interests
       </h2>
       <div className="grid-cols-2 justify-center text-center md:grid">

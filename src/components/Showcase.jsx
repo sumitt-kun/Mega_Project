@@ -2,7 +2,7 @@ import React from "react";
 
 function Showcase() {
   return (
-    <div className="my-1 grid-cols-2 md:grid">
+    <div className="grid-cols-2 md:grid">
       <div className="md:p-auto justify-center bg-gradient-to-r from-pink-800 to-red-500 align-middle text-white md:p-5">
         <div>
           <p className="p-8 text-left font-serif text-4xl md:text-6xl">

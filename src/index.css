@@ -48,3 +48,11 @@
 .dev-img{
   border-radius: 100%;
 }
+.webkit{
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: calc(1em / 16);
+  -webkit-background-clip: text;
+  background-color: black;
+  color: #C62727;
+  letter-spacing: 0.3rem;
+}
