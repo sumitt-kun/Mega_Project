@@ -40,7 +40,6 @@ function SignUp() {
       console.error("Error signing in with google:", error.message);
     }
   };
-
   return (
     <div className="h-[80%] w-[40%] rounded-3xl bg-white bg-opacity-20">
       <div className="flex h-full flex-col items-center justify-evenly">

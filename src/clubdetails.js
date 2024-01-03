@@ -81,7 +81,7 @@ const clubdetail = [
     img_url: "./src/images/sime.jpg",
     name: "Society for Industrial Management and Engineering",
     desc: "Industrial Management team of BIT.",
-    type: "industrial",
+    type: "engineering",
   },
   {
     id: 13,
@@ -95,7 +95,7 @@ const clubdetail = [
     img_url: "./src/images/aerospace.jpg",
     name: "Aerospace Society",
     desc: "Come, fly with us.",
-    type: "aeronautics",
+    type: "engineering",
   },
   {
     id: 15,
