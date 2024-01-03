@@ -1,6 +1,6 @@
 const dev_details = [
     {
-        img_url: "../src/images/kush_photu.jpeg",
+        img_url: "../src/images/kush-photu.jpg",
         name: "KUSHAGRA SAHAY",
         insta_id: "https://www.instagram.com/sahay_kush?igsh=MXJreWgyYm1jNDJsNg%3D%3D&utm_source=qr",
         linkedin_id: "https://www.linkedin.com/in/kushagra-sahay-500b671b8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",

@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link} from "react-router-dom";
 function Showcase() {
   return (
     <div className="grid-cols-2 md:grid">
@@ -13,12 +13,14 @@ function Showcase() {
           </p>
         </div>
         <div className="grid grid-cols-2">
-          <button formAction="/login" formMethod="post"
+          <Link to="/login">
+          <button
             className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
                 text-center hover:opacity-80 md:text-4xl"
           >
             Register Now
           </button>
+          </Link>
         </div>
       </div>
       <div className="justify-center shadow-2xl">
