@@ -1,6 +1,6 @@
 const dev_details = [
     {
-        img_url: "../src/images/kush_photu.jpeg",
+        img_url: "../src/images/kush-photu.jpg",
         name: "KUSHAGRA SAHAY",
         insta_id: "",
         linkedin_id: "",

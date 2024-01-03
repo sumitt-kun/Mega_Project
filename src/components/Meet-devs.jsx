@@ -19,7 +19,7 @@ function Meetdev(){
 function Card(props){
     return (
         <div className="bg-gradient-to-r from-red-800 to-pink-800 align-middle m-7">
-            <div className="m-auto width-full text-center"><img className="dev-img h-auto m-auto p-3 w-1/2" src={props.img_url} alt="img" /></div>
+            <div className="m-auto width-full text-center"><img className="dev-img m-auto p-3 w-1/2 h-auto" src={props.img_url} alt="img" /></div>
             <div className="text-center font-semibold text-2xl"><p>{props.name}</p></div>
             <div className="p-3 grid grid-cols-4">
                 <a className="p-2 m-auto text-2xl" href={props.insta_id}><FaInstagram /></a>
