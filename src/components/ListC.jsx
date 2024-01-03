@@ -21,6 +21,14 @@ function ListC() {
     filteredItems = sortedItems.filter((e) => e.type === "technical");
   if (filterBy === "cult")
     filteredItems = sortedItems.filter((e) => e.type === "cultural");
+  if (filterBy === "sport")
+    filteredItems = sortedItems.filter((e) => e.type === "sporting");
+  if (filterBy === "eng")
+    filteredItems = sortedItems.filter((e) => e.type === "engineering");
+  if (filterBy === "env")
+    filteredItems = sortedItems.filter((e) => e.type === "environmental");
+  if (filterBy === "fin")
+    filteredItems = sortedItems.filter((e) => e.type === "finance");
   return (
     <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
       <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
@@ -49,6 +57,10 @@ function ListC() {
             <option value="none">Filter-By:None</option>
             <option value="tech">Technical</option>
             <option value="cult">Cultural</option>
+            <option value="sport">Sports</option>
+            <option value="eng">Engineering</option>
+            <option value="env">Environmental</option>
+            <option value="fin">Finance</option>
           </select>
         </div>
       </div>
@@ -69,7 +81,6 @@ function ClubList({ ele }) {
         <div className="l-card items-center rounded-xl">
           <div className="l-front rounded-xl">
             <img className="rounded-xl" src={ele.img_url} alt="clb-img" />
-            <h3 className="text-2xl font-bold">{ele.name}</h3>
           </div>
           <div className="l-rear flex flex-col flex-wrap items-center rounded-xl bg-gradient-to-r from-red-700 to-pink-800 ">
             <h3 className="mb-0 pb-0 text-xl font-bold text-white">
