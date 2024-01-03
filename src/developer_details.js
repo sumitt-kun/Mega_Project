@@ -2,9 +2,9 @@ const dev_details = [
     {
         img_url: "../src/images/kush_photu.jpeg",
         name: "KUSHAGRA SAHAY",
-        insta_id: "",
-        linkedin_id: "",
-        contact: "",
+        insta_id: "https://www.instagram.com/sahay_kush?igsh=MXJreWgyYm1jNDJsNg%3D%3D&utm_source=qr",
+        linkedin_id: "https://www.linkedin.com/in/kushagra-sahay-500b671b8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+        contact: "8210183523",
         portfolio: ""
     },
     {
@@ -12,15 +12,15 @@ const dev_details = [
         name: "SUMIT KUMAR",
         insta_id: "https://www.instagram.com/sumitt_kun?igsh=YzVkODRmOTdmMw%3D%3D",
         linkedin_id: "https://www.linkedin.com/in/sumit-kun/",
-        contact: "8210183523",
+        contact: "9334349312",
         portfolio: ""
     },
     {
-        img_url: "",
+        img_url: "../src/images/priyanshu_foto.jpg",
         name: "PRIYANSHU PRIYAM",
-        insta_id: "",
-        linkedin_id: "",
-        contact: "",
+        insta_id: "https://www.instagram.com/myopic.priyanshu/",
+        linkedin_id: "https://www.linkedin.com/in/priyanshu-priyam-b15100253/",
+        contact: "9263546809",
         portfolio: ""
     }
 ]
