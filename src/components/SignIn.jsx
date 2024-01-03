@@ -1,46 +1,36 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { auth, googleProvider } from "../config/firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-export default function Login() {
+export default function SignIn() {
   return (
     <>
       <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../src/images/back_img.jpg')] bg-cover bg-fixed bg-center">
-        <SignUp />
+        <Sign />
       </div>
     </>
   );
 }
-function SignUp() {
+function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const signUp = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User signed up successfully!");
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-    }
-  };
   const signIn = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.error("user logged in successfully");
+      console.log("user logged in successfully");
+      alert("User logged in successfully");
     } catch (error) {
       console.error("error signing in", error.message);
+      alert(error.message);
     }
   };
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
       console.log("User signed in successfully!");
+      alert("User logged in sucessfully");
     } catch (error) {
       console.error("Error signing in with google:", error.message);
     }
@@ -49,7 +39,7 @@ function SignUp() {
     <div className="h-[80%] w-[40%] rounded-3xl bg-white bg-opacity-20">
       <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text bg-transparent bg-clip-text text-4xl font-bold text-white">
-          Sign Up
+          Sign In
         </h1>
         <input
           type="text"
@@ -65,8 +55,8 @@ function SignUp() {
           autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="text-white" onClick={signUp}>
-          Sign Up
+        <button className="text-white" onClick={signIn}>
+          Sign In
         </button>
         <div className="flex gap-3">
           <FcGoogle className="google-icon" />
@@ -74,9 +64,9 @@ function SignUp() {
             Login with<span className="bg-transparent"> Google</span>
           </button>
         </div>
-        <Link to="/signin">
+        <Link to="/login">
           <button className="text-xl text-white hover:shadow-white">
-            Existing User? Login
+            New User? SignUp
           </button>
         </Link>
       </div>
