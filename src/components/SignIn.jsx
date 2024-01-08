@@ -3,7 +3,8 @@ import { FcGoogle } from "react-icons/fc";
 import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {toast, Toaster} from "react-hot-toast";
 export default function SignIn() {
   return (
     <>
@@ -16,11 +17,16 @@ export default function SignIn() {
 function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const signIn = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const result = await signInWithEmailAndPassword(auth, email, password);
       console.log("user logged in successfully");
-      alert("User logged in successfully");
+      toast.success('user logged in successfully');
+      localStorage.setItem('user', JSON.stringify(result));
+      setTimeout(()=>{
+        navigate('/');
+      }, 1000);
     } catch (error) {
       console.error("error signing in", error.message);
       alert(error.message);
@@ -28,15 +34,20 @@ function Sign() {
   };
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
       console.log("User signed in successfully!");
-      alert("User logged in sucessfully");
+      toast.success('user logged in successfully');
+      localStorage.setItem('user', JSON.stringify(result));
+      setTimeout(()=>{
+        navigate('/');
+      }, 1000);
     } catch (error) {
       console.error("Error signing in with google:", error.message);
     }
   };
   return (
     <div className="h-[80%] w-[40%] rounded-3xl bg-white bg-opacity-20">
+      <Toaster />
       <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text bg-transparent bg-clip-text text-4xl font-bold text-white">
           Sign In
