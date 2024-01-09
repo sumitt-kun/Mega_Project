@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import clubdetail from "../clubdetails";
 
+function Headinginterest(){
+  return (
+    <div>
+      <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
+        Find Your Interests
+      </h2>
+    </div>
+  )
+}
 function ListC() {
   const [sortBy, setSortBy] = useState("default");
   const [filterBy, setFilterBy] = useState("None");
@@ -31,10 +40,7 @@ function ListC() {
     filteredItems = sortedItems.filter((e) => e.type === "finance");
   return (
     <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
-      <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
-        Find Your Interests
-      </h2>
-      <div className="grid-cols-2 justify-center text-center md:grid">
+    <div className="grid-cols-2 justify-center text-center md:grid">
         <div className="rounded-2xl p-3">
           <select
             className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
@@ -72,7 +78,7 @@ function ListC() {
     </div>
   );
 }
-export default ListC;
+export {ListC, Headinginterest};
 
 function ClubList({ ele }) {
   return (
