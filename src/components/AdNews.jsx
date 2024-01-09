@@ -3,7 +3,6 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { uploadBytes, getStorage, ref } from "firebase/storage";
-// import { useFirebase } from "Firebase";
 
 export default function AdminNews() {
   const [name, setname] = useState("");
