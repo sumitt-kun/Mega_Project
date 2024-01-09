@@ -4,11 +4,12 @@ import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {toast, Toaster} from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 export default function SignIn() {
   return (
     <>
       <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../src/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+        <HomeBtn />
         <Sign />
       </div>
     </>
@@ -22,10 +23,10 @@ function Sign() {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       console.log("user logged in successfully");
-      toast.success('user logged in successfully');
-      localStorage.setItem('user', JSON.stringify(result));
-      setTimeout(()=>{
-        navigate('/dashboard');
+      toast.success("user logged in successfully");
+      localStorage.setItem("user", JSON.stringify(result));
+      setTimeout(() => {
+        navigate("/dashboard");
       }, 1000);
     } catch (error) {
       console.error("error signing in", error.message);
@@ -36,10 +37,10 @@ function Sign() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       console.log("User signed in successfully!");
-      toast.success('user logged in successfully');
-      localStorage.setItem('user', JSON.stringify(result));
-      setTimeout(()=>{
-        navigate('/dashboard');
+      toast.success("user logged in successfully");
+      localStorage.setItem("user", JSON.stringify(result));
+      setTimeout(() => {
+        navigate("/dashboard");
       }, 1000);
     } catch (error) {
       console.error("Error signing in with google:", error.message);
@@ -82,5 +83,17 @@ function Sign() {
         </Link>
       </div>
     </div>
+  );
+}
+
+function HomeBtn() {
+  return (
+    <Link to="/">
+      <button>
+        <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
+          CLUBCONNECT
+        </h1>
+      </button>
+    </Link>
   );
 }

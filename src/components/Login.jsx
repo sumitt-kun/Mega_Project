@@ -12,6 +12,7 @@ export default function Login() {
   return (
     <>
       <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../src/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+        <HomeBtn />
         <SignUp />
       </div>
     </>
@@ -81,5 +82,17 @@ function SignUp() {
         </Link>
       </div>
     </div>
+  );
+}
+
+function HomeBtn() {
+  return (
+    <Link to="/">
+      <button>
+        <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
+          CLUBCONNECT
+        </h1>
+      </button>
+    </Link>
   );
 }
