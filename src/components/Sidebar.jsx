@@ -1,5 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+const logout = () =>{
+    localStorage.clear('user');
+    window.location.href = '/login';
+}
 function Sidebar(){
     return (
         <div className="w-full h-screen">
@@ -8,6 +12,7 @@ function Sidebar(){
                 <button className="p-5">Event Calendar</button>
                 <button className="p-5">Join Clubs</button>
                 <button className="p-5">Newsroom</button>
+                <button onClick={logout} className="p-5">Logout</button>
             </div>
         </div>
     )
