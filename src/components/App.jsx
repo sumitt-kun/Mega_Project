@@ -16,10 +16,21 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<SignIn />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
+<<<<<<< HEAD
         <Route path="/add" element={<AdNews />} />
         <Route path="/news" element={<NewsR />} />
+=======
+        <Route 
+          path="/add" 
+          element={
+            <ProtectedRouteForAdmin>
+              <AdNews />
+            </ProtectedRouteForAdmin>
+          } 
+        />
+>>>>>>> 5772b9deb47b38de0bb9fdafd0ebb7db4ded9d15
         <Route
           path="/dashboard"
           element={
@@ -39,15 +50,15 @@ const ProtectedRoute = ({ children }) => {
   if (user) {
     return children;
   } else {
-    return <Navigate to={"/login"} />;
+    return <Navigate to="/login" />;
   }
 };
-const arr = ["iet@bitclubconnect", "ieee@bitclubconnect"];
+
 const ProtectedRouteForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem("user"));
-  if (arr.find(admin.user.email) !== undefined) {
+  if (admin.user.email === 'ietbit@clubconnect.com') {
     return children;
   } else {
-    return <Navigate to={"/login"} />;
+    return <Navigate to="/signin" />;
   }
 };
