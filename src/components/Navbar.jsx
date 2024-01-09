@@ -48,7 +48,7 @@ function Navbar() {
             </button>
             </li>
             <li className="p-8 text-5xl font-bold text-transparent  hover:shadow-red-500 bg-clip-text bg-gradient-to-r from-pink-800 to-red-500">
-              <Link to="/login">
+              <Link to="/dashboard">
               <button className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300">
                 Login
               </button>

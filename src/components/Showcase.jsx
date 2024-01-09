@@ -13,7 +13,7 @@ function Showcase() {
           </p>
         </div>
         <div className="grid grid-cols-2">
-          <Link to="/login">
+          <Link to="/dashboard">
           <button
             className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
                 text-center hover:opacity-80 md:text-4xl"
