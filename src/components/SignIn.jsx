@@ -25,7 +25,7 @@ function Sign() {
       toast.success('user logged in successfully');
       localStorage.setItem('user', JSON.stringify(result));
       setTimeout(()=>{
-        navigate('/');
+        navigate('/dashboard');
       }, 1000);
     } catch (error) {
       console.error("error signing in", error.message);
@@ -39,7 +39,7 @@ function Sign() {
       toast.success('user logged in successfully');
       localStorage.setItem('user', JSON.stringify(result));
       setTimeout(()=>{
-        navigate('/');
+        navigate('/dashboard');
       }, 1000);
     } catch (error) {
       console.error("Error signing in with google:", error.message);
