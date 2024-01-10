@@ -73,7 +73,7 @@ function Sign() {
         <div className="flex gap-3">
           <FcGoogle className="google-icon" />
           <button className=" text-white shadow-2xl" onClick={signInWithGoogle}>
-            Login with<span className="bg-transparent"> Google</span>
+            Continue with<span className="bg-transparent"> Google</span>
           </button>
         </div>
         <Link to="/login">

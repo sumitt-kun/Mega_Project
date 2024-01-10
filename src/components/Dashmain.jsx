@@ -1,5 +1,5 @@
 import React from "react";
-import { ListC, Headinginterest } from "./ListC";
+import { ListC } from "./ListC";
 function Dashmain(){
     return(
         <div>
