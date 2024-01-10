@@ -11,6 +11,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import Recruit from "./Recruitment";
+import Applications from "./Applications";
 function App() {
   return (
     <Router>
@@ -33,6 +35,22 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/recruit"
+          element={
+            <ProtectedRoute>
+              <Recruit />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/applications"
+          element={
+            <ProtectedRoute>
+              <Applications />
             </ProtectedRoute>
           }
         />

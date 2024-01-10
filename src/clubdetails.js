@@ -37,7 +37,7 @@ const clubdetail = [
   {
     id: 6,
     img_url: "./src/images/iete.jpg",
-    name: "The Institution of Electronics and Telecommunication Engineers",
+    name: "The Institution of Electronics and Telecom Engineers",
     desc: "Best coding and electronics club of BIT.",
     type: "technical",
   },
