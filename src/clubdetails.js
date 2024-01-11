@@ -1,7 +1,7 @@
 const clubdetail = [
   {
     id: 1,
-    img_url: "../../public/static/images/acm.jpg",
+    img_url: "/static/images/acm.jpg",
     name: "Association of Computer Machinery",
     desc: "Best coding club.",
     type: "technical",
