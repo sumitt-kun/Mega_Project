@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 function Showcase() {
   return (
     <div className="grid-cols-2 md:grid">
@@ -14,17 +14,18 @@ function Showcase() {
         </div>
         <div className="grid grid-cols-2">
           <Link to="/dashboard">
-          <button
-            className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
+            <button
+              className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
                 text-center hover:opacity-80 md:text-4xl"
-          >
-            Register Now
-          </button>
+            >
+              Register Now
+            </button>
           </Link>
         </div>
       </div>
       <div className="justify-center shadow-2xl">
         <img
+          loading="lazy"
           className="m-auto block h-auto w-full shadow-2xl md:w-full"
           src="/static/images/college-stud.png"
           alt=""

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import clubdetail from "../clubdetails";
 
-function Headinginterest(){
+function Headinginterest() {
   return (
     <div>
       <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
         Find Your Interests
       </h2>
     </div>
-  )
+  );
 }
 function ListC() {
   const [sortBy, setSortBy] = useState("default");
@@ -40,7 +40,7 @@ function ListC() {
     filteredItems = sortedItems.filter((e) => e.type === "finance");
   return (
     <div className="bg-[url('/static/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
-    <div className="grid-cols-2 justify-center text-center md:grid">
+      <div className="grid-cols-2 justify-center text-center md:grid">
         <div className="rounded-2xl p-3">
           <select
             className="w-2/3 rounded-2xl border-4 border-black bg-gradient-to-r from-red-700 to-pink-800 p-3 
@@ -78,7 +78,7 @@ function ListC() {
     </div>
   );
 }
-export {ListC, Headinginterest};
+export { ListC, Headinginterest };
 
 function ClubList({ ele }) {
   return (
@@ -86,7 +86,12 @@ function ClubList({ ele }) {
       <div className="l-container mx-2 my-3 items-center rounded-xl p-0 text-center">
         <div className="l-card items-center rounded-xl">
           <div className="l-front rounded-xl">
-            <img className="rounded-xl" src={ele.img_url} alt="clb-img" />
+            <img
+              loading="lazy"
+              className="rounded-xl"
+              src={ele.img_url}
+              alt="clb-img"
+            />
           </div>
           <div className="l-rear flex flex-col flex-wrap items-center rounded-xl bg-gradient-to-r from-red-700 to-pink-800 ">
             <h3 className="mb-0 pb-0 text-xl font-bold text-white">
