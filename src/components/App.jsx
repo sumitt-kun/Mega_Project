@@ -21,7 +21,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/add" element={<AdNews />} />
-        <Route path="/news" element={<NewsR />} />
+        <Route path="/news" element={
+          <ProtectedRoute>
+          <NewsR />
+          </ProtectedRoute>
+        } />
         <Route
           path="/add"
           element={

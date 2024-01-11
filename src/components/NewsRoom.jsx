@@ -2,24 +2,22 @@ import React, { useEffect, useState } from "react";
 import {
   getFirestore,
   collection,
-  addDoc,
-  Firestore,
   getDocs,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
-import { uploadBytes, getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const firebaseApp = initializeApp(firebaseConfig);
-const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 export default function NewsR() {
   return (
     <div>
-      <h1 className="text-xl font-bold">NewsRoom</h1>
+      <p className="leading-13 mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-6 text-left font-serif text-4xl text-white md:text-6xl">
+          NEWSROOM
+      </p>
       <Ns />
-      <Cards />
     </div>
   );
 }
@@ -29,7 +27,7 @@ const Ns = () => {
     Nws().then((newss) => setnewss(newss.docs));
   }, []);
   return (
-    <div>
+    <div className="grid md:grid-cols-2 bg-[url('/static/images/newsroom.jpeg')] bg-no-repeat bg-center bg-cover bg-fixed">
       {newss.map((newss) => (
         <Cards key={newss.id} {...newss.data()} />
       ))}
@@ -52,24 +50,27 @@ function Cards(props) {
     getImageUrl(props.imageURL).then((url) => setUrl(url));
   }, [props.imageURL]);
   return (
-    <div class="max-w-sm overflow-hidden rounded shadow-lg">
-      <img class="w-full" src={url} alt="poster"></img>
-      <div class="px-6 py-4">
-        <div class="mb-2 text-xl font-bold">{props.name}</div>
-        <p class="text-base text-gray-700">
-          This event was posted by {props.name}
-        </p>
-      </div>
-      <div class="px-6 pb-2 pt-4">
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          posted on: {props.date}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          event Date: {props.eventdate}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          link: {props.Url}
-        </span>
+    <div class="news-container rounded-xl shadow-lg shadow-white bg-gradient-to-r from-pink-800 to-red-500 text-white m-10">
+      <div className="l-card items-center rounded-xl">
+        <div className="l-front">
+          <img class="w-full h-full border-black border-2 shadow-lg shadow-white" src={url} alt="poster"></img>
+        </div>
+        <div className="l-rear">
+          <div class="text-2xl p-5 m-5">
+            <div class="mb-2 mr-2 text-3xl font-bold uppercase text-center">{props.name}</div>
+          </div>  
+          <div class="grid text-center">
+            <span class="mb-2 mr-2 inline-block rounded-full font-semibold text-white uppercase">
+              Posted on: {props.date}
+            </span>
+            <span class="mb-2 mr-2 inline-block rounded-full font-semibold text-white uppercase">
+              event Date: {props.eventdate}
+            </span>
+            <a href={props.Url} class="inline-block underline rounded-full font-semibold text-white uppercase">
+              link: {props.Url}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
