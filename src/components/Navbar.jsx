@@ -18,7 +18,7 @@ function Navbar() {
         <h1 className="webkit text-xl md:text-4xl font-extrabold text-transparent bg-clip-text">CLUBCONNECT</h1>
         </div>
         <div className="z-20">
-        <img className="w-1/4 h-auto m-auto rounded-full shadow-2xl shadow-white" src="../../public/static/images/bit.png" alt="bit-logo" />
+        <img className="w-1/4 h-auto m-auto rounded-full shadow-2xl shadow-white" src="/static/images/bit.png" alt="bit-logo" />
         </div>
         <div className="z-20">
         <BsMenuButtonWideFill
