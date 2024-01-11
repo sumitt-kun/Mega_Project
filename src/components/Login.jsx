@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../src/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../../public/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
         <HomeBtn />
         <SignUp />
       </div>

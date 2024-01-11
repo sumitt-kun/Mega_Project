@@ -39,7 +39,7 @@ function ListC() {
   if (filterBy === "fin")
     filteredItems = sortedItems.filter((e) => e.type === "finance");
   return (
-    <div className="bg-[url('../src/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
+    <div className="bg-[url('../../public/static/images/bg-for-clubs.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:bg-center">
     <div className="grid-cols-2 justify-center text-center md:grid">
         <div className="rounded-2xl p-3">
           <select
