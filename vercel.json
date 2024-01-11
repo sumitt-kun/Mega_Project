@@ -1,12 +1,6 @@
 {
-    "rewrites": [
-      { "src": "/", "dest": "/" },
-      { "src": "/recruit", "dest": "/recruit" },
-      { "src": "/login", "dest": "/login" },
-      { "src": "/signin", "dest": "/sigin" },
-      { "src": "/dashboard", "dest": "/dashboard" },
-      { "src": "/add", "dest": "/add" },
-      { "src": "/news", "dest": "/news" },
-      { "src": "/applications", "dest": "/applications" }
+    "rewrites":  [
+      {"source": "/(.*)", "destination": "/"}
     ]
 }
+  
