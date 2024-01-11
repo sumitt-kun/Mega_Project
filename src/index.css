@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 ::selection {
-  color: white;
+  color: black;
 }
 
 .l-container {
