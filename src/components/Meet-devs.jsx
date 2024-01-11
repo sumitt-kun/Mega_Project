@@ -6,7 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
 function Meetdev(){
     return (
-        <div className="bg-[url('../src/images/img-bg.jpg')]">
+        <div className="bg-[url('/static/images/img-bg.jpg')]">
             <p className="mb-6 p-6 leading-13 text-left text-4xl md:text-6xl font-serif text-white bg-gradient-to-r from-red-600 to-pink-800">Meet The Developers</p>
             <div className="text-white md:grid grid-cols-3 p-10">
                 {dev_details.map((ele)=>(

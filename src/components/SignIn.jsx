@@ -8,7 +8,7 @@ import { toast, Toaster } from "react-hot-toast";
 export default function SignIn() {
   return (
     <>
-      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('../src/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
         <HomeBtn />
         <Sign />
       </div>

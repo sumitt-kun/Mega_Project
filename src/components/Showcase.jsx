@@ -26,7 +26,7 @@ function Showcase() {
       <div className="justify-center shadow-2xl">
         <img
           className="m-auto block h-auto w-full shadow-2xl md:w-full"
-          src="src/images/college-stud.png"
+          src="/static/images/college-stud.png"
           alt=""
         />
       </div>
