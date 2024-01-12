@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaHome, FaCalendar, FaPowerOff, FaNewspaper } from "react-icons/fa";
 const logout = () =>{
     localStorage.clear('user');
@@ -10,7 +11,9 @@ function Sidebar(){
             <div className="grid grid-rows mt-6 bg-gradient-to-r from-pink-800 to-red-500">
                 <div className="flex bg-white  text-gray-600 rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaHome className="my-auto ml-8" size={25}/>
-                    <button className="p-5 font-sans text-lg font-bold" >Home</button>
+                    <Link to="/">
+                        <button className="p-5 font-sans text-lg font-bold" >Home</button>
+                    </Link>
                 </div>
                 <div className="flex bg-white text-gray-600 rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaCalendar className="my-auto ml-8" size={25}/>
@@ -18,11 +21,15 @@ function Sidebar(){
                 </div>
                 <div className="flex bg-white text-gray-600 rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaHome className="my-auto ml-8" size={25}/>
-                    <button className="p-5 font-sans text-lg font-bold" >Join Clubs</button>
+                    <Link to="/recruit">
+                        <button className="p-5 font-sans text-lg font-bold" >Join Clubs</button>
+                    </Link>
                 </div>
                 <div className="flex bg-white text-gray-600 rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaNewspaper className="my-auto ml-8" size={25}/>
-                    <button className="p-5 font-sans text-lg font-bold" >Newsroom</button>
+                    <Link to="/news">
+                        <button className="p-5 font-sans text-lg font-bold" >Newsroom</button>
+                    </ Link>
                 </div>
                 <div className="flex bg-white text-gray-600 rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaPowerOff className="my-auto ml-8" size={25}/>
