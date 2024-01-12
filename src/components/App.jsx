@@ -5,6 +5,7 @@ import SignIn from "./SignIn";
 import Dashboard from "./Dashboard";
 import AdNews from "./AdNews";
 import NewsR from "./NewsRoom";
+import Descr from "./Descr";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,11 +22,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/add" element={<AdNews />} />
-        <Route path="/news" element={
-          <ProtectedRoute>
-          <NewsR />
-          </ProtectedRoute>
-        } />
+        <Route path="/de" element={<Descr />} />
+        <Route
+          path="/news"
+          element={
+            <ProtectedRoute>
+              <NewsR />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/add"
           element={
