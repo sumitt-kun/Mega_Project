@@ -62,6 +62,15 @@
   border: black;
   letter-spacing: 0.3rem;
 }
+.webkit-typewriter{
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: calc(1em / 16);
+  -webkit-background-clip: text;
+  background-color: black;
+  color: white;
+  font-family: cursive;
+  letter-spacing: 0.3rem;
+}
 .google-icon{
   font-size: 40px;
 }

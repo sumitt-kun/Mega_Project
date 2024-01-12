@@ -3,8 +3,8 @@ import clubdetail from "../clubdetails";
 
 function Headinginterest() {
   return (
-    <div>
-      <h2 className="mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
+    <div className="">
+      <h2 className="mt-20 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
         Find Your Interests
       </h2>
     </div>
@@ -88,7 +88,7 @@ function ClubList({ ele }) {
           <div className="l-front rounded-xl">
             <img
               loading="lazy"
-              className="rounded-xl"
+              className="rounded-xl m-auto"
               src={ele.img_url}
               alt="clb-img"
             />

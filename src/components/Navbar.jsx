@@ -15,22 +15,22 @@ function Navbar() {
     return (
       <div className="absolute grid grid-cols-3 w-full items-center justify-between p-4">
         <div className="z-20">
-        <h1 className="webkit text-xl md:text-4xl font-extrabold text-transparent bg-clip-text">CLUBCONNECT</h1>
+        <h1 className="webkit text-sm md:text-4xl font-extrabold text-transparent bg-clip-text">CLUBCONNECT</h1>
         </div>
         <div className="z-20">
-        <img className="w-1/4 h-auto m-auto rounded-full shadow-2xl shadow-white" src="/static/images/bit.png" alt="bit-logo" />
+        <img className="w-1/4 h-auto invisible md:visible m-auto rounded-full shadow-2xl shadow-white" src="/static/images/bit.png" alt="bit-logo" />
         </div>
         <div className="z-20">
         <BsMenuButtonWideFill
           onClick={handleNav}
-          className="cursor-pointer text-white hover:opacity-80 float-right"
+          className="cursor-pointer text-white hover:opacity-70 float-right"
           size={37}
         />
         </div>
         <div
           className={
             nav
-              ? "fixed left-0 top-0 z-10 h-screen w-full flex-col bg-black/70 px-4 py-7 text-gray-300 duration-500 ease-in"
+              ? "fixed left-0 top-0 z-10 h-screen w-full flex-col bg-black/90 px-4 py-7 text-gray-300 duration-500 ease-in"
               : "absolute left-[-100%] top-0 z-10 h-screen duration-500 ease-in bg-red-800"
           }
         >
