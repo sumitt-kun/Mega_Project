@@ -4,7 +4,6 @@ import { auth, googleProvider } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
@@ -52,22 +51,17 @@ function SignUp() {
       console.log("User signed up successfully!");
     } catch (error) {
       console.error("Error signing up:", error.message);
-    }
-  };
-  const signIn = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.error("user logged in successfully");
-    } catch (error) {
-      console.error("error signing in", error.message);
+      toast.failure("account already exists or invalid emailid");
     }
   };
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      toast.success("Account created now login using same credentials");
       console.log("User signed in successfully!");
     } catch (error) {
       console.error("Error signing in with google:", error.message);
+      toast.failure("account already exists or invalid emailid");
     }
   };
   return (
