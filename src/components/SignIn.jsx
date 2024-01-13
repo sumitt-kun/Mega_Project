@@ -19,6 +19,12 @@ function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
   const signIn = async () => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
@@ -46,12 +52,7 @@ function Sign() {
       console.error("Error signing in with google:", error.message);
     }
   };
-  function refreshPage() {
-    setTimeout(() => {
-      window.location.reload(false);
-    }, 500);
-    console.log("page to reload");
-  }
+
   return (
     <div className="h-[85%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
