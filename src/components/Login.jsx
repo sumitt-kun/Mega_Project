@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div className="flex h-full w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex p-2 h-full w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
         <HomeBtn />
         <SignUp />
       </div>
@@ -47,11 +47,10 @@ function SignUp() {
       });
       await createUserWithEmailAndPassword(auth, email, password);
       toast.success("Account created now login using same credentials");
-
       console.log("User signed up successfully!");
     } catch (error) {
       console.error("Error signing up:", error.message);
-      toast.failure("account already exists or invalid emailid");
+      toast.error("account already exists or invalid emailid");
     }
   };
   const signInWithGoogle = async () => {
@@ -61,7 +60,7 @@ function SignUp() {
       console.log("User signed in successfully!");
     } catch (error) {
       console.error("Error signing in with google:", error.message);
-      toast.failure("account already exists or invalid emailid");
+      toast.error("account already exists or invalid emailid");
     }
   };
   return (

@@ -8,7 +8,7 @@ import { toast, Toaster } from "react-hot-toast";
 export default function SignIn() {
   return (
     <>
-      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex p-2 h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
         <HomeBtn />
         <Sign />
       </div>
@@ -30,7 +30,7 @@ function Sign() {
       }, 1000);
     } catch (error) {
       console.error("error signing in", error.message);
-      alert(error.message);
+      toast.error("EmailId or password is incorrect");
     }
   };
   const signInWithGoogle = async () => {
@@ -47,7 +47,7 @@ function Sign() {
     }
   };
   return (
-    <div className="h-[85%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
+    <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
       <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text bg-transparent bg-clip-text text-4xl font-bold text-white">
