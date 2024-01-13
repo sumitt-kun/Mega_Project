@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard";
 import AdNews from "./AdNews";
 import NewsR from "./NewsRoom";
 import Descr from "./Descr";
+import ClubD from "./ClubD";
 import {
   BrowserRouter as Router,
   Route,
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/add" element={<AdNews />} />
         <Route path="/de" element={<Descr />} />
+        <Route path="/cd" element={<ClubD />} />
         <Route
           path="/news"
           element={
