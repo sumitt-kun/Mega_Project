@@ -33,7 +33,6 @@ function SignUp() {
   const [roll, setRoll] = useState("");
   const [branch, setBranch] = useState("");
   const [poster, setposter] = useState("");
-
   const signUp = async () => {
     try {
       const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
@@ -44,6 +43,7 @@ function SignUp() {
         roll,
         branch,
         imageURL: uploadResult.ref.fullPath,
+        email
       });
       await createUserWithEmailAndPassword(auth, email, password);
       toast.success("Account created now login using same credentials");
@@ -115,7 +115,7 @@ function SignUp() {
           placeholder="Email"
           className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
           autoComplete="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value.toLowerCase())}
         />
         <input
           type="password"
