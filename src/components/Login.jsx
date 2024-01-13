@@ -73,7 +73,7 @@ function SignUp() {
   return (
     <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
-      <div className="flex h-full flex-col items-center justify-evenly">
+      <div className="flex h-screen flex-col items-center justify-evenly">
         <h1 className="text p-2 bg-transparent bg-clip-text text-4xl font-bold text-white">
           Create Account
         </h1>
