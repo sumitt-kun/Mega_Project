@@ -12,13 +12,20 @@ import Navfunc from "./Dashnav";
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
 
+function Navigator(){
+  const [isOpen, setIsOpen] = useState("false");
+  return (
+  <Navfunc props={isOpen}/>
+  )
+}
+
 export default function NewsR() {
   return (
     <div className="text-center bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
       <p className="bg-gradient-to-r from-red-600 to-pink-800 p-6 text-left font-serif text-4xl text-white md:text-6xl">
           NEWSROOM
       </p>
-      <Navfunc className="m-auto" />
+      <Navigator className="m-auto" />
       <Ns />
     </div>
   );

@@ -4,21 +4,27 @@ import { FaBars } from "react-icons/fa";
 import { FaRegWindowClose } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 
-const Navfunc = () => {
-    const [isOpen, setIsOpen] = useState("false");
+const Navfunc = ({props}) => {
+  const [isOpen, setIsOpen] = useState(props.present);
     const toggleNavbar = () =>(
         setIsOpen(!isOpen)
     )
-  
     return(
-      <div>
+      <>
+      <nav>
         <div className="hidden md:flex justify-center">
           <Sidebar />
         </div>
         <div className="md:hidden my-5">
-          <button className="p-3" onClick={toggleNavbar}>{isOpen ? <FaBars className="text-white" size={32} /> : <FaRegWindowClose className="text-white" size={32}/>}</button>
+          <button className="p-3" onClick={toggleNavbar}>{isOpen ? <FaRegWindowClose className="text-white" size={32} /> : <FaBars className="text-white" size={32}/>}</button>
         </div>
-      </div>
+      </nav>
+      {isOpen && (
+        <div className="flex basis-full items-center">
+          <Sidebar className="flex"/>
+        </div>
+      )}
+      </>
     )
 }
 export default Navfunc

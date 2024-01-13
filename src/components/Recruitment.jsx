@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
+import Navfunc from "./Dashnav";
+function Navigator(){
+  const [isOpen, setIsOpen] = useState("false");
+  return (
+  <Navfunc props={isOpen}/>
+  )
+}
 
 export default function Recruit(){
     const user = JSON.parse(localStorage.getItem('user'));
@@ -42,6 +49,7 @@ export default function Recruit(){
     };
     return (
       <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+        <Navigator />
       <div className="h-[90%] w-[25rem] rounded-3xl bg-white bg-opacity-20">
         <div className="flex h-full flex-col items-left justify-evenly m-5">
         <h1 className=" text-white text-4xl font-bold text-center ">

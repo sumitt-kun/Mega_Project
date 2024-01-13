@@ -53,7 +53,7 @@ export default function AdminNews() {
           <input
             type="date"
             placeholder="Date"
-            className=" rounded-xl p-2 text-center bg-[url('/static/images/newsroom.jpeg')] bg-no-repeat bg-center bg-cover bg-fixed"
+            className="rounded-xl p-2 text-center bg-[url('/static/images/newsroom.jpeg')] bg-no-repeat bg-center bg-cover bg-fixed"
             autoComplete="Current-date"
             onChange={(e) => setdate(e.target.value)}
           />

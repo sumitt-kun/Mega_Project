@@ -2,7 +2,7 @@ import React from "react";
 import Dashmain from "./Dashmain";
 import Footer from "./Footer";
 import Navfunc from "./Dashnav";
-
+import { useState } from "react";
 function Nav(){
     return(
         <div className="p-2 grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 align-middle">
@@ -17,12 +17,19 @@ function Nav(){
     )
 }
 
+function Navigator(){
+    const [isOpen, setIsOpen] = useState("false");
+    return (
+    <Navfunc props={isOpen}/>
+    )
+}
+
 function Dashboard(){
     return (
         <div className="bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
             <Nav />
             <div className="text-center">
-              <Navfunc />
+              <Navigator />
               <Dashmain />
             </div>
             <Footer />

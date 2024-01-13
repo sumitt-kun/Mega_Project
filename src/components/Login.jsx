@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex h-full w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
         <HomeBtn />
         <SignUp />
       </div>
@@ -71,7 +71,7 @@ function SignUp() {
     }
   };
   return (
-    <div className="h-[85%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
+    <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
       <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text p-2 bg-transparent bg-clip-text text-4xl font-bold text-white">
@@ -106,7 +106,7 @@ function SignUp() {
           onChange={(e) => setBranch(e.target.value)}
         />
         <label for="images" className="drop-container" id="drop-container">
-        <span class="drop-title">Drop files here</span>
+        <span class="drop-title">Drop Your Photo here</span>
         <input
           type="file"
           placeholder=""
@@ -126,11 +126,11 @@ function SignUp() {
         <input
           type="password"
           placeholder="Enter Password"
-          className="rounded-sm bg-transparent text-center text-xl text-white"
+          className="rounded-sm p-2 bg-transparent text-center text-xl text-white"
           autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="text-white" onClick={signUp}>
+        <button className="text-white p-2" onClick={signUp}>
           Sign Up
         </button>
         <div className="flex gap-3">
@@ -141,7 +141,7 @@ function SignUp() {
         </div>
 
         <Link to="/signin">
-          <button className="text-xl text-white hover:shadow-white">
+          <button className="text-xl p-2 text-white hover:shadow-white">
             Existing User? Login
           </button>
         </Link>

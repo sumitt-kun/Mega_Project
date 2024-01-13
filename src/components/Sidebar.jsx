@@ -7,8 +7,8 @@ const logout = () =>{
 
 function Sidebar(){
     return (
-        <div className="m-6 bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
-            <ul className="flex justify-center ">
+        <div className="m-6">
+            <ul className="md:flex absolute z-10 bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed md:relative justify-center ">
                 <li className="flex text-white rounded-xl m-3 hover:shadow-lg hover:shadow-white hover:bg-gradient-to-r from-pink-600 to-red-500 hover:text-white">
                     <FaHome className="my-auto ml-8" size={25}/>
                     <Link to="/">
