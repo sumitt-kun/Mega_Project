@@ -15,13 +15,13 @@ const Navfunc = ({props}) => {
         <div className="hidden md:flex justify-center">
           <Sidebar />
         </div>
-        <div className="md:hidden my-5">
+        <div className="md:hidden">
           <button className="p-3" onClick={toggleNavbar}>{isOpen ? <FaRegWindowClose className="text-white" size={32} /> : <FaBars className="text-white" size={32}/>}</button>
         </div>
       </nav>
       {isOpen && (
         <div className="flex basis-full items-center">
-          <Sidebar className="flex"/>
+          <Sidebar className=""/>
         </div>
       )}
       </>

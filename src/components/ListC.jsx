@@ -111,10 +111,7 @@ function ClubList({ ele }) {
             </h3>
             <div className="h1 mt-0   w-36 rounded-2xl border-b-4 border-purple-950 pt-0 md:mt-4"></div>
             <p className="text-white">{ele.desc}</p>
-            <button
-              onClick={() => Sec(ele.name)}
-              className="h-15   my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500"
-            >
+            <button className="h-15   my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500">
               Visit
             </button>
           </div>
