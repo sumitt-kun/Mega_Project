@@ -19,6 +19,12 @@ function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
   const signIn = async () => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
@@ -46,6 +52,7 @@ function Sign() {
       console.error("Error signing in with google:", error.message);
     }
   };
+
   return (
     <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
@@ -77,7 +84,10 @@ function Sign() {
           </button>
         </div>
         <Link to="/login">
-          <button className="text-xl text-white hover:shadow-white">
+          <button
+            onClick={refreshPage}
+            className="text-xl text-white hover:shadow-white"
+          >
             New User? Create Account
           </button>
         </Link>
@@ -97,7 +107,7 @@ function HomeBtn() {
     <Link to="/">
       <button onClick={refreshPage}>
         <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
-          CLUBCONNECT
+          Home
         </h1>
       </button>
     </Link>
