@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div className="flex p-2 h-full w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
+      <div className="flex h-full w-full flex-col items-center  justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center p-2">
         <HomeBtn />
         <SignUp />
       </div>
@@ -155,7 +155,7 @@ function HomeBtn() {
     <Link to="/">
       <button onClick={refreshPage}>
         <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
-          CLUBCONNECT
+          Home
         </h1>
       </button>
     </Link>
