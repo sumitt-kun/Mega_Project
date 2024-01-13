@@ -70,7 +70,8 @@ export default function AdminNews() {
           />
           <input
             type="file"
-            className="rounded-xl bg-[url('/static/images/newsroom.jpeg')] bg-cover bg-fixed bg-center bg-no-repeat p-2 text-center text-white"
+            className="text-white rounded-xl p-2 text-center bg-[url('/static/images/newsroom.jpeg')] bg-no-repeat bg-center bg-cover bg-fixed"
+            accept="image/*"
             onChange={(e) => setposter(e.target.files[0])}
           />
           <input
