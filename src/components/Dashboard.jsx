@@ -4,7 +4,7 @@ import {
   collection,
   getDocs,
   where,
-  query
+  query,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
@@ -23,31 +23,29 @@ const listallusers = () => {
 };
 
 const getuserbyemail = async () => {
-    const firestore = getFirestore(firebaseApp);
-    const collectionRef = collection(firestore, "users");
-    const user = JSON.parse(localStorage.getItem('user'));
-    const email = user.user.email;
-    const q = query(collectionRef, where("email", "==", email));
-    const result = await getDocs(q);
-    return result;
-}
+  const firestore = getFirestore(firebaseApp);
+  const collectionRef = collection(firestore, "users");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const email = user.user.email;
+  const q = query(collectionRef, where("email", "==", email));
+  const result = await getDocs(q);
+  return result;
+};
 
 const getImageUrl = async (path) => {
   return await getDownloadURL(ref(storage, path));
 };
 
 const AlluserData = () => {
-    const [userData, setuserData] = useState(null);
-    useEffect(() => {
+  const [userData, setuserData] = useState(null);
+  useEffect(() => {
     getuserbyemail().then((userData) => setuserData(userData.docs));
   }, []);
 
   return (
     <div>
       {userData &&
-        userData.map((user) => (
-          <Nav key={user.id} {...user.data()} />
-        ))}
+        userData.map((user) => <Nav key={user.id} {...user.data()} />)}
     </div>
   );
 };
@@ -65,32 +63,35 @@ function Nav(props) {
   };
 
   return (
-    <div className="p-2 grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 align-middle">
-      <h1 className="text-white mb-auto m-auto bg-clip-text text-2xl font-extrabold text-transparent md:text-4xl">
+    <div className="grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 p-2 align-middle">
+      <h1 className="m-auto mb-auto bg-clip-text text-2xl font-extrabold text-transparent text-white md:text-4xl">
         CLUBCONNECT
       </h1>
-      <ul className="flex justify-between items-center p-1">
-        <li className="ml-auto relative">
+      <ul className="flex items-center justify-between p-1">
+        <li className="relative ml-auto">
           <p
-            className="p-2 text-white flex cursor-pointer"
+            className="flex cursor-pointer p-2 text-white"
             src={url}
             alt="profile-pic"
             onClick={toggleDropdown}
-          >Your Profile<FaCaretDown className="m-1"/></p>
+          >
+            Your Profile
+            <FaCaretDown className="m-1" />
+          </p>
         </li>
       </ul>
       {isDropdownOpen && (
-            <div className="absolute top-12 border-white border-2 right-5 z-20 bg-gradient-to-r from-pink-800 to-red-500 text-white p-2 rounded shadow">
-                <img src={url} className="p-1 w-20 rounded-full m-auto"></img>
-                <div className="">
-                <p className="p-1 text-white">Welcome, {props.naam}</p>
-                <p className="p-1 text-white">ROLL - {props.roll}</p>
-                <p className="p-1 text-white">BRANCH - {props.branch}</p>
-                <p className="p-1 text-white">MOBILE - {props.mob}</p>
-                <p className="p-1 text-white">EMAIL - {props.email}</p>
-                </div>
-            </div>
-        )}
+        <div className="absolute right-5 top-12 z-20 rounded border-2 border-white bg-gradient-to-r from-pink-800 to-red-500 p-2 text-white shadow">
+          <img src={url} className="m-auto w-20 rounded-full p-1"></img>
+          <div className="">
+            <p className="p-1 text-white">Welcome, {props.naam}</p>
+            <p className="p-1 text-white">ROLL - {props.roll}</p>
+            <p className="p-1 text-white">BRANCH - {props.branch}</p>
+            <p className="p-1 text-white">MOBILE - {props.mob}</p>
+            <p className="p-1 text-white">EMAIL - {props.email}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -102,7 +103,7 @@ function Navigator() {
 
 function Dashboard() {
   return (
-    <div className="bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
+    <div className="bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
       <AlluserData />
       <div className="text-center">
         <Navigator />
