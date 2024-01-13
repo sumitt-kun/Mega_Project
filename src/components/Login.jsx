@@ -70,6 +70,7 @@ function SignUp() {
       console.error("Error signing in with google:", error.message);
     }
   };
+
   return (
     <div className="h-[85%] w-[85%] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
@@ -147,9 +148,15 @@ function SignUp() {
 }
 
 function HomeBtn() {
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
   return (
     <Link to="/">
-      <button>
+      <button onClick={refreshPage}>
         <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
           CLUBCONNECT
         </h1>
