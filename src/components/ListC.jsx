@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import clubdetail from "../clubdetails";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useState from "react-usestateref";
 function Headinginterest() {
   return (
     <div className="">
@@ -84,13 +85,13 @@ export { ListC, Headinginterest };
 
 function ClubList({ ele }) {
   const navigate = useNavigate();
-  const [curr, setCurr] = useState("");
+  const [curr, setCurr, currRef] = useState("");
 
   const Sec = async (e) => {
     setCurr(e);
     // localStorage.clear();
     // localStorage.removeItem("club");
-    localStorage.setItem("club", JSON.stringify(curr));
+    localStorage.setItem("club", JSON.stringify(currRef.current));
     console.log("added to local");
     const it = JSON.parse(localStorage.getItem("club"));
     if (it) {
