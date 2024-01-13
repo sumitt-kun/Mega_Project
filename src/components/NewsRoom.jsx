@@ -7,16 +7,18 @@ import {
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import Navfunc from "./Dashnav";
 
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
 
 export default function NewsR() {
   return (
-    <div>
-      <p className="leading-13 mb-6 bg-gradient-to-r from-red-600 to-pink-800 p-6 text-left font-serif text-4xl text-white md:text-6xl">
+    <div className="text-center bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
+      <p className="bg-gradient-to-r from-red-600 to-pink-800 p-6 text-left font-serif text-4xl text-white md:text-6xl">
           NEWSROOM
       </p>
+      <Navfunc className="m-auto" />
       <Ns />
     </div>
   );
@@ -56,10 +58,10 @@ function Cards(props) {
           <img class="w-full h-full border-black border-2 shadow-lg shadow-white" src={url} alt="poster"></img>
         </div>
         <div className="l-rear">
-          <div class="text-2xl p-5 m-5">
-            <div class="mb-2 mr-2 text-3xl font-bold uppercase text-center">{props.name}</div>
+          <div class="p-5 m-5">
+            <div class="mb-2 mr-2 text-xl md:text-2xl font-bold uppercase text-center">{props.name}</div>
           </div>  
-          <div class="grid text-center">
+          <div class="grid text-center text-sm md:text-xl">
             <span class="mb-2 mr-2 inline-block rounded-full font-semibold text-white uppercase">
               Posted on: {props.date}
             </span>

@@ -71,51 +71,55 @@ function SignUp() {
     }
   };
   return (
-    <div className="h-[85%] w-[85%] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
+    <div className="h-[85%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
       <div className="flex h-full flex-col items-center justify-evenly">
-        <h1 className="text bg-transparent bg-clip-text text-4xl font-bold text-white">
+        <h1 className="text p-2 bg-transparent bg-clip-text text-4xl font-bold text-white">
           Create Account
         </h1>
         <input
           type="text"
           placeholder="Enter Full Name"
-          className="text-l h-5 rounded-md bg-transparent text-center font-semibold text-white"
+          className="text-l h-5 p-2 rounded-md bg-transparent text-center font-semibold text-white"
           autoComplete=""
           onChange={(e) => setNaam(e.target.value)}
         />
         <input
           type="text"
           placeholder="Enter mobile number"
-          className="text-l  rounded-md border-white bg-transparent text-center font-semibold text-white"
+          className="text-l p-2 rounded-md border-white bg-transparent text-center font-semibold text-white"
           autoComplete="mob"
           onChange={(e) => setMob(e.target.value)}
         />
         <input
           type="text"
           placeholder=" Roll: BTECH/10XXX/22"
-          className="text-l  rounded-md border-white bg-transparent text-center font-semibold text-white"
+          className="text-l p-2 rounded-md border-white bg-transparent text-center font-semibold text-white"
           autoComplete=""
           onChange={(e) => setRoll(e.target.value)}
         />
         <input
           type="text"
           placeholder="Branch"
-          className="rounded-md  border-white bg-transparent text-center text-xl font-semibold text-white"
+          className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
           autoComplete=""
           onChange={(e) => setBranch(e.target.value)}
         />
+        <label for="images" className="drop-container" id="drop-container">
+        <span class="drop-title">Drop files here</span>
         <input
           type="file"
-          placeholder="upload pic"
+          placeholder=""
           className="ml-10 rounded-md border-white bg-transparent pl-4 text-center text-xl font-semibold text-white"
           autoComplete=""
+          accept="image/*"
           onChange={(e) => setposter(e.target.files[0])}
         />
+        </label>
         <input
           type="text"
           placeholder="Email"
-          className="rounded-md  border-white bg-transparent text-center text-xl font-semibold text-white"
+          className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
           autoComplete="email"
           onChange={(e) => setEmail(e.target.value)}
         />

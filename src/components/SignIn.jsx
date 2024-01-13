@@ -47,7 +47,7 @@ function Sign() {
     }
   };
   return (
-    <div className="h-[85%] w-[85%] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
+    <div className="h-[85%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
       <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text bg-transparent bg-clip-text text-4xl font-bold text-white">

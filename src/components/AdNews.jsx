@@ -37,7 +37,7 @@ export default function AdminNews() {
   };
   return (
     <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
-      <div className="h-[80%] w-[40%] rounded-3xl bg-white bg-opacity-20">
+      <div className="h-[80%] w-[25rem] rounded-3xl bg-white bg-opacity-20">
         <div className="flex h-full flex-col items-left justify-evenly m-5">
         <h1 className=" text-white text-4xl font-bold text-center ">
           ADD NOTICE

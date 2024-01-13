@@ -19,7 +19,7 @@ export default function Descr() {
       `uploads/image/${name}/${Date.now()}-${poster.name}`,
     );
     const uploadResult = await uploadBytes(imgref, poster);
-    await addDoc(collection(firestore, `${name}`), {
+    await addDoc(collection(firestore, `club_base`), {
       name,
       de,
       imageURL: uploadResult.ref.fullPath,
@@ -30,7 +30,7 @@ export default function Descr() {
   return (
     <div className="flex h-screen w-full flex-col  items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center">
       <Toaster />
-      <div className="h-[80%] w-[40%] rounded-3xl bg-white bg-opacity-20">
+      <div className="h-[80%] w-[25rem] rounded-3xl bg-white bg-opacity-20">
         <div className="items-left m-5 flex h-full flex-col justify-evenly">
           <h1 className=" text-center text-4xl font-bold text-white ">
             Add Your Club
