@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import clubdetail from "../clubdetails";
+import { useEffect } from "react";
 
 function Headinginterest() {
   return (
@@ -14,6 +15,7 @@ function ListC() {
   const [sortBy, setSortBy] = useState("default");
   const [filterBy, setFilterBy] = useState("None");
   let sortedItems = clubdetail;
+
   if (sortBy === "default") sortedItems = clubdetail;
   if (sortBy === "name-asc")
     sortedItems = clubdetail
@@ -81,6 +83,16 @@ function ListC() {
 export { ListC, Headinginterest };
 
 function ClubList({ ele }) {
+  const [curr, setCurr] = useState("");
+
+  const Sec = async (e) => {
+    setCurr(e);
+    localStorage.setItem("club", JSON.stringify(curr));
+    console.log("added to local");
+    const it = JSON.parse(localStorage.getItem("club"));
+    console.log(it);
+    console.log("done");
+  };
   return (
     <li>
       <div className="l-container mx-2 my-3 items-center rounded-xl p-0 text-center">
@@ -88,7 +100,7 @@ function ClubList({ ele }) {
           <div className="l-front rounded-xl">
             <img
               loading="lazy"
-              className="rounded-xl m-auto"
+              className="m-auto rounded-xl"
               src={ele.img_url}
               alt="clb-img"
             />
@@ -99,7 +111,10 @@ function ClubList({ ele }) {
             </h3>
             <div className="h1 mt-0   w-36 rounded-2xl border-b-4 border-purple-950 pt-0 md:mt-4"></div>
             <p className="text-white">{ele.desc}</p>
-            <button className="h-15   my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500">
+            <button
+              onClick={() => Sec(ele.name)}
+              className="h-15   my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500"
+            >
               Visit
             </button>
           </div>
