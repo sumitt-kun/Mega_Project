@@ -87,9 +87,15 @@ function Sign() {
 }
 
 function HomeBtn() {
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
   return (
     <Link to="/">
-      <button>
+      <button onClick={refreshPage}>
         <h1 className="webkit mb-6 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl ">
           CLUBCONNECT
         </h1>
