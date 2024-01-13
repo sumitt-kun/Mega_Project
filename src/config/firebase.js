@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getPerformance } from "firebase/performance";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyAlEHzwbJEsWfzw2S56BaMHJOHVBtN8W5c",
@@ -13,4 +14,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const perf = getPerformance(app);
 export { auth, googleProvider, firebaseConfig };

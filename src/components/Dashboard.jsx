@@ -1,40 +1,36 @@
 import React from "react";
-import Sidebar from "./Sidebar";
 import Dashmain from "./Dashmain";
 import Footer from "./Footer";
-import { Link } from "react-router-dom";
-
-function HomeBtn() {
-    return (
-      <Link to="/">
-        <button>
-          <h1 className="webkit mb-auto ml-2 bg-clip-text text-xl font-extrabold text-transparent md:text-4xl">
-            CLUBCONNECT
-          </h1>
-        </button>
-      </Link>
-    );
-  }
+import Navfunc from "./Dashnav";
+import { useState } from "react";
 function Nav(){
     return(
-        <div className="p-2 grid grid-cols-2 bg-gray-900">
-            <HomeBtn />
-            <div>
-                <div className="flex float-right m-auto p-1">
-                    <img className="p-2" src="../images/kush-photu.jpg" alt="profile-pic"></img>
-                    <p className="p-2 text-white">Your Profile</p>
-                </div>
-            </div>
+        <div className="p-2 grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 align-middle">
+              <h1 className="text-white mb-auto m-auto bg-clip-text text-2xl font-extrabold text-transparent md:text-4xl">
+              CLUBCONNECT
+              </h1>
+              <ul className="flex justify-end p-1">
+                <li className=""><img className="p-2" src="../images/kush-photu.jpg" alt="profile-pic"></img></li>
+                <li className=""><p className="p-2 text-white">Your Profile</p></li>
+              </ul>
         </div>
     )
 }
+
+function Navigator(){
+    const [isOpen, setIsOpen] = useState("false");
+    return (
+    <Navfunc props={isOpen}/>
+    )
+}
+
 function Dashboard(){
     return (
-        <div>
+        <div className="bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
             <Nav />
-            <div className="dashboard grid">
-            <Sidebar />
-            <Dashmain />
+            <div className="text-center">
+              <Navigator />
+              <Dashmain />
             </div>
             <Footer />
         </div>
