@@ -1,7 +1,7 @@
 ## Team Details
 - **Team Name:** RestInPeace
 - **Team Members:**
-  - Sumit Kumar [Html Layouts, Auth, Website Optimisations, Alerts and Database Fetching]
+  - Sumit Kumar [Html Layouts, Auth, Dynamic Rendering, Website Optimisations, Alerts and Database Fetching]
   - Kushagra Sahay [Styling, Auth, Admin Controls, Dynamic Webpages and Database Querying]
   - Priyanshu Priyam [Styling, Web Testing, Layouts and Data Creation]
 
