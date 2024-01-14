@@ -1,10 +1,11 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { auth, googleProvider } from "../config/firebase";
-import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 export default function SignIn() {
   return (
     <>
@@ -18,6 +19,7 @@ export default function SignIn() {
 function Sign() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const auth = getAuth();
   const navigate = useNavigate();
   function refreshPage() {
     setTimeout(() => {
@@ -25,11 +27,25 @@ function Sign() {
     }, 500);
     console.log("page to reload");
   }
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
   const signIn = async () => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       console.log("user logged in successfully");
-      toast.success("user logged in successfully");
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
       localStorage.setItem("user", JSON.stringify(result));
       setTimeout(() => {
         navigate("/dashboard");
@@ -42,8 +58,16 @@ function Sign() {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      const user = auth.currentUser;
+      const name = user.name;
+      console.log("user logged in successfully");
+      Swal.fire({
+        title: 'GOOD JOB!',
+        text: `Welcome BITIAN, ${name}`,
+        icon: 'success',
+        confirmButtonText: 'OK'
+      })
       console.log("User signed in successfully!");
-      toast.success("user logged in successfully");
       localStorage.setItem("user", JSON.stringify(result));
       setTimeout(() => {
         navigate("/dashboard");
@@ -106,10 +130,10 @@ function HomeBtn() {
   return (
     <Link to="/">
       <button
-        className="mb-2 rounded-lg from-pink-600 to-red-500 pb-0  hover:bg-gradient-to-r hover:text-white"
+        className="mb-2 rounded-lg from-pink-600 to-red-500 pb-0"
         onClick={refreshPage}
       >
-        <h1 className="webkit mb-6 bg-clip-text  text-xl font-extrabold text-transparent  hover:text-white md:text-4xl">
+        <h1 className="webkit mb-6 bg-clip-text  text-xl font-extrabold text-transparent  md:text-4xl">
           Home
         </h1>
       </button>
