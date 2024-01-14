@@ -49,7 +49,10 @@ function Navbar() {
         <ul className="fixed flex h-full w-full flex-col items-center justify-center">
           <li className="hover: bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text p-8 text-3xl font-bold text-transparent">
             <Link to="/">
-              <button onClick={refreshPage} className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300">
+              <button
+                onClick={refreshPage}
+                className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"
+              >
                 Home
               </button>
             </Link>
@@ -69,6 +72,16 @@ function Navbar() {
                 className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"
               >
                 Login
+              </button>
+            </Link>
+          </li>
+          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-8 text-5xl font-bold text-transparent hover:shadow-red-500">
+            <Link to="/dashboard">
+              <button
+                onClick={refreshPage}
+                className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"
+              >
+                Dashboard
               </button>
             </Link>
           </li>
