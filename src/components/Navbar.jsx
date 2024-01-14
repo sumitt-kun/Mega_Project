@@ -46,8 +46,8 @@ function Navbar() {
             : "absolute left-[-100%] top-0 z-10 h-screen bg-red-800 duration-500 ease-in"
         }
       >
-        <ul className="fixed flex h-full w-full flex-col items-center justify-center">
-          <li className="hover: bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text p-8 text-3xl font-bold text-transparent">
+        <ul className="fixed mt-[3rem] flex h-full w-full flex-col items-center justify-center">
+          <li className="hover: bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text p-5 text-3xl font-bold text-transparent">
             <Link to="/">
               <button
                 onClick={refreshPage}
@@ -57,7 +57,7 @@ function Navbar() {
               </button>
             </Link>
           </li>
-          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-8 text-4xl font-bold text-transparent hover:shadow-red-500">
+          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-6 text-4xl font-bold text-transparent hover:shadow-red-500">
             <button
               href=""
               className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"
@@ -65,7 +65,7 @@ function Navbar() {
               Contact Us
             </button>
           </li>
-          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-8 text-5xl font-bold text-transparent hover:shadow-red-500">
+          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-5 text-5xl font-bold text-transparent hover:shadow-red-500">
             <Link to="/signin">
               <button
                 onClick={refreshPage}
@@ -75,7 +75,7 @@ function Navbar() {
               </button>
             </Link>
           </li>
-          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-8 text-5xl font-bold text-transparent hover:shadow-red-500">
+          <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-5 text-5xl font-bold text-transparent hover:shadow-red-500">
             <Link to="/dashboard">
               <button
                 onClick={refreshPage}
