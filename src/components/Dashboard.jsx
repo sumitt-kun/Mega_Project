@@ -4,7 +4,7 @@ import {
   collection,
   getDocs,
   where,
-  query,
+  query
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
@@ -13,39 +13,55 @@ import Dashmain from "./Dashmain";
 import Footer from "./Footer";
 import Navfunc from "./Dashnav";
 import { FaCaretDown } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
 
-const listallusers = () => {
-  const firestore = getFirestore(firebaseApp);
-  return getDocs(collection(firestore, "users"));
-};
-
-const getuserbyemail = async () => {
-  const firestore = getFirestore(firebaseApp);
-  const collectionRef = collection(firestore, "users");
-  const user = JSON.parse(localStorage.getItem("user"));
-  const email = user.user.email;
-  const q = query(collectionRef, where("email", "==", email));
-  const result = await getDocs(q);
-  return result;
-};
+const getuserbyuid = async () => {
+    const firestore = getFirestore(firebaseApp);
+    const collectionRef = collection(firestore, "users");
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user.uid;
+    console.log(uid);
+    const q = query(collectionRef, where("uid", "==", uid));
+    const result = await getDocs(q);
+    return result;
+}
 
 const getImageUrl = async (path) => {
   return await getDownloadURL(ref(storage, path));
 };
 
 const AlluserData = () => {
-  const [userData, setuserData] = useState(null);
-  useEffect(() => {
-    getuserbyemail().then((userData) => setuserData(userData.docs));
-  }, []);
-
+    const navigate = useNavigate();
+    const [userData, setuserData] = useState(null);
+    useEffect(() => {
+    getuserbyuid().then((userData) => setuserData(userData.docs));
+    }, []);
+    if(userData){
+      const extractedUserArray = userData.map(user => user.data());
+      if(userData && extractedUserArray.length==0){
+        Swal.fire({
+          title: 'Incomplete Profile',
+          text: 'Redirecting....',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+        setTimeout(() => {
+          navigate("/profile");
+        }, 1000);
+      }
+    }
   return (
     <div>
       {userData &&
-        userData.map((user) => <Nav key={user.id} {...user.data()} />)}
+        userData.map((user) => (
+          <Nav key={user.id} {...user.data()} />
+        ))}
     </div>
   );
 };
@@ -63,35 +79,32 @@ function Nav(props) {
   };
 
   return (
-    <div className="grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 p-2 align-middle">
-      <h1 className="m-auto mb-auto bg-clip-text text-2xl font-extrabold text-transparent text-white md:text-4xl">
+    <div className="p-2 grid grid-cols-2 bg-gradient-to-r from-pink-800 to-red-500 align-middle">
+      <h1 className="text-white mb-auto m-auto bg-clip-text text-2xl font-extrabold text-transparent md:text-4xl">
         CLUBCONNECT
       </h1>
-      <ul className="flex items-center justify-between p-1">
-        <li className="relative ml-auto">
+      <ul className="flex justify-between items-center p-1">
+        <li className="ml-auto relative">
           <p
-            className="flex cursor-pointer p-2 text-white"
+            className="p-2 text-white flex cursor-pointer"
             src={url}
             alt="profile-pic"
             onClick={toggleDropdown}
-          >
-            Your Profile
-            <FaCaretDown className="m-1" />
-          </p>
+          >Your Profile<FaCaretDown className="m-1"/></p>
         </li>
       </ul>
       {isDropdownOpen && (
-        <div className="absolute right-5 top-12 z-20 rounded border-2 border-white bg-gradient-to-r from-pink-800 to-red-500 p-2 text-white shadow">
-          <img src={url} className="m-auto w-20 rounded-full p-1"></img>
-          <div className="">
-            <p className="p-1 text-white">Welcome, {props.naam}</p>
-            <p className="p-1 text-white">ROLL - {props.roll}</p>
-            <p className="p-1 text-white">BRANCH - {props.branch}</p>
-            <p className="p-1 text-white">MOBILE - {props.mob}</p>
-            <p className="p-1 text-white">EMAIL - {props.email}</p>
-          </div>
-        </div>
-      )}
+            <div className="absolute top-12 border-white border-2 right-5 z-20 bg-gradient-to-r from-pink-800 to-red-500 text-white p-2 rounded shadow">
+                <img src={url} className="p-1 w-20 rounded-full m-auto"></img>
+                <div className="">
+                <p className="p-1 text-white">Welcome, {props.naam}</p>
+                <p className="p-1 text-white">ROLL - {props.roll}</p>
+                <p className="p-1 text-white">BRANCH - {props.branch}</p>
+                <p className="p-1 text-white">MOBILE - {props.mob}</p>
+                <p className="p-1 text-white">EMAIL - {props.emailid}</p>
+                </div>
+            </div>
+        )}
     </div>
   );
 }
@@ -103,7 +116,7 @@ function Navigator() {
 
 function Dashboard() {
   return (
-    <div className="bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
+    <div className="bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
       <AlluserData />
       <div className="text-center">
         <Navigator />

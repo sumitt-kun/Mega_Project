@@ -18,7 +18,7 @@ export default function Sample() {
   let na = localStorage.getItem("club");
   console.log(na);
   return (
-    <div className="flex flex-col items-center justify-evenly px-[10%] text-center">
+    <div className="flex h-screen flex-col bg-[url('/static/images/dashbg.jpg')] text-white bg-no-repeat bg-center bg-cover bg-fixed items-center justify-evenly px-[10%] text-center">
       <ClubData />
     </div>
   );

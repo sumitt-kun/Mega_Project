@@ -7,6 +7,7 @@ import AdNews from "./AdNews";
 import NewsR from "./NewsRoom";
 import Descr from "./Descr";
 import ClubD from "./ClubD";
+import Profile from "./Profile";
 import {
   BrowserRouter as Router,
   Route,
@@ -62,6 +63,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Applications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />

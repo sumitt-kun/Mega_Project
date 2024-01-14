@@ -1,36 +1,28 @@
 import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { googleProvider } from "../config/firebase";
 import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
   getAuth
 } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { uploadBytes, getStorage, ref } from "firebase/storage";
-import { toast, Toaster } from "react-hot-toast";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"; 
-import { useNavigate } from "react-router-dom";
-export default function Login() {
+export default function Profile() {
   return (
     <>
       <div className="flex h-full w-full flex-col items-center  justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center p-2">
         <HomeBtn />
-        <SignUp />
+        <Complete />
       </div>
     </>
   );
 }
-function SignUp() {
+function Complete() {
   const firebaseApp = initializeApp(firebaseConfig);
   const firestore = getFirestore(firebaseApp);
   const storage = getStorage(firebaseApp);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [naam, setNaam] = useState("");
   const [mob, setMob] = useState("");
   const [roll, setRoll] = useState("");
@@ -38,12 +30,11 @@ function SignUp() {
   const [poster, setposter] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
-  const signUp = async () => {
+  const prof = async () => {
     try {
       const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
       const uploadResult = await uploadBytes(imgref, poster);
       if(naam!=="" && mob!=="" && roll!=="" && branch!=="" && poster!==""){
-        await createUserWithEmailAndPassword(auth, email, password);
         const user = auth.currentUser;
         const uid = user.uid;
         const emailid = user.email;
@@ -58,12 +49,12 @@ function SignUp() {
         });
         Swal.fire({
           title: 'GOOD JOB!',
-          text: `Welcome BITIAN, ${naam}`,
+          text: `Your Profile is Completed`,
           icon: 'success',
-          confirmButtonText: 'Continue Logging in'
+          confirmButtonText: 'Continue to Dashboard'
         })
         setTimeout(() => {
-          navigate("/dashboard");
+            navigate("/dashboard");
         }, 1000);
       }
       else{
@@ -75,59 +66,15 @@ function SignUp() {
         })
       }
     } catch (error) {
-      console.error("Error signing up:", error.message);
-      toast.error("account already exists or invalid emailid");
-    }
-  };
-  const signInWithGoogle = async () => {
-    try {
-      const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
-      const uploadResult = await uploadBytes(imgref, poster);
-      if(naam!=="" && mob!=="" && roll!=="" && branch!=="" && poster!==""){
-        await signInWithPopup(auth, googleProvider);
-        const user = auth.currentUser;
-        const uid = user.uid;
-        const emailid = user.email;
-        await addDoc(collection(firestore, "users"), {
-          naam,
-          mob,
-          roll,
-          branch,
-          imageURL: uploadResult.ref.fullPath,
-          emailid,
-          uid
-        });
-        Swal.fire({
-          title: 'GOOD JOB!',
-          text: `Welcome BITIAN`,
-          icon: 'success',
-          confirmButtonText: 'Continue Logging in'
-        })
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-        console.log("User signed in successfully!");
-      }
-      else{
-        Swal.fire({
-          title: 'Error! Fields are empty',
-          text: 'Please complete your Profile',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        })
-      }
-    } catch (error) {
-      console.error("Error signing in with google:", error.message);
-      toast.error("account already exists or invalid emailid");
+      console.error("Error connecting to database", error.message);
     }
   };
 
   return (
     <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
-      <Toaster />
       <div className="flex h-screen flex-col items-center justify-evenly">
         <h1 className="text p-2 bg-transparent bg-clip-text text-4xl font-bold text-white">
-          Create Account
+          Complete Your Profile
         </h1>
         <input
           type="text"
@@ -168,35 +115,9 @@ function SignUp() {
           onChange={(e) => setposter(e.target.files[0])}
         />
         </label>
-        <input
-          type="text"
-          placeholder="Email"
-          className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
-          autoComplete="email"
-          onChange={(e) => setEmail(e.target.value.toLowerCase())}
-        />
-        <input
-          type="password"
-          placeholder="Enter Password"
-          className="rounded-sm p-2 bg-transparent text-center text-xl text-white"
-          autoComplete="current-password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="text-white p-2" onClick={signUp}>
-          Sign Up
+        <button className="text-white p-2" onClick={prof}>
+          Submit Details
         </button>
-        <div className="flex gap-3">
-          <FcGoogle className="google-icon" />
-          <button className=" text-white shadow-2xl" onClick={signInWithGoogle}>
-            Continue with<span className="bg-transparent"> Google</span>
-          </button>
-        </div>
-
-        <Link to="/signin">
-          <button className="text-xl p-2 text-white hover:shadow-white">
-            Existing User? Login
-          </button>
-        </Link>
       </div>
     </div>
   );
