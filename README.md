@@ -1,9 +1,15 @@
 ## Team Details
 - **Team Name:** RestInPeace
 - **Team Members:**
-  - Sumit Kumar [Html Layouts, Auth, Dynamic Rendering, Website Optimisations, Alerts and Database Fetching]
+  - Sumit Kumar [HTML layouts, Auth, Website & Performance Optimisations, Alerts, and Database Fetching]
+    btech10265.22@bitmesra.ac.in
   - Kushagra Sahay [Styling, Auth, Admin Controls, Dynamic Webpages and Database Querying]
+    btech10058.22@bitmesra.ac.in
   - Priyanshu Priyam [Styling, Web Testing, Layouts and Data Creation]
+    btech10106.22@bitmesra.ac.in
+
+## Code Sample/Link to Hosted Website
+https://mega-project-mu.vercel.app/
 
 ## Domain of Your Project
 Web Development [FullStack]
@@ -48,7 +54,8 @@ ClubConnect is a cutting-edge full-stack web development project designed to bri
     Created a holistic platform that serves as a centralized hub for club interactions, fostering a sense of community and connection.
   
   - Enhanced User Experience:
-    Prioritized user experience through thoughtful design, ensuring that the platform is both visually appealing and functionally efficient.
+    Prioritized user experience through thoughtful design, ensuring that the platform is both visually appealing and   
+    functionally efficient. Implemented features like sorting and filtering for club lists.
   
   - Contributions to Campus Life:
     Developed a project that significantly contributes to the vibrancy and connectivity of campus life, providing a valuable virtual space for students to connect and     
@@ -90,9 +97,6 @@ ClubConnect is a cutting-edge full-stack web development project designed to bri
    - To stop the development server, go back to the terminal and press `Ctrl + C`.
 
 Users can follow these steps to set up and run your React and Vite project locally using the provided GitHub repository link.
-
-## Code Sample/Link to Hosted Website
-https://mega-project-mu.vercel.app/
 
 ## Some Pictures of Website
 ![homepage](https://github.com/AviatorCoderr/mega_project/assets/124370316/cd97b068-5728-4284-b157-d9f56df0620d)
