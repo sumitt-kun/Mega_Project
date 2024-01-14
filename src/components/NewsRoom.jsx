@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -12,18 +8,16 @@ import Navfunc from "./Dashnav";
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
 
-function Navigator(){
+function Navigator() {
   const [isOpen, setIsOpen] = useState("false");
-  return (
-  <Navfunc props={isOpen}/>
-  )
+  return <Navfunc props={isOpen} />;
 }
 
 export default function NewsR() {
   return (
-    <div className="text-center bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
+    <div className="bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat text-center">
       <p className="bg-gradient-to-r from-red-600 to-pink-800 p-6 text-left font-serif text-4xl text-white md:text-6xl">
-          NEWSROOM
+        NEWSROOM
       </p>
       <Navigator className="m-auto" />
       <Ns />
@@ -36,7 +30,7 @@ const Ns = () => {
     Nws().then((newss) => setnewss(newss.docs));
   }, []);
   return (
-    <div className="grid md:grid-cols-2 bg-[url('/static/images/newsroom.jpeg')] bg-no-repeat bg-center bg-cover bg-fixed">
+    <div className="grid bg-[url('/static/images/newsroom.jpeg')] bg-cover bg-fixed bg-center bg-no-repeat md:grid-cols-2">
       {newss.map((newss) => (
         <Cards key={newss.id} {...newss.data()} />
       ))}
@@ -59,23 +53,33 @@ function Cards(props) {
     getImageUrl(props.imageURL).then((url) => setUrl(url));
   }, [props.imageURL]);
   return (
-    <div class="news-container rounded-xl shadow-lg shadow-white bg-gradient-to-r from-pink-800 to-red-500 text-white m-10">
+    <div class="news-container m-10 rounded-xl bg-gradient-to-r from-pink-800 to-red-500 text-white shadow-lg shadow-white">
       <div className="l-card items-center rounded-xl">
         <div className="l-front">
-          <img class="w-full h-full border-black border-2 shadow-lg shadow-white" src={url} alt="poster"></img>
+          <img
+            class="h-full w-full border-2 border-black shadow-lg shadow-white"
+            src={url}
+            alt="poster"
+            loading="lazy"
+          ></img>
         </div>
         <div className="l-rear">
-          <div class="p-5 m-5">
-            <div class="mb-2 mr-2 text-xl md:text-2xl font-bold uppercase text-center">{props.name}</div>
-          </div>  
+          <div class="m-5 p-5">
+            <div class="mb-2 mr-2 text-center text-xl font-bold uppercase md:text-2xl">
+              {props.name}
+            </div>
+          </div>
           <div class="grid text-center text-sm md:text-xl">
-            <span class="mb-2 mr-2 inline-block rounded-full font-semibold text-white uppercase">
+            <span class="mb-2 mr-2 inline-block rounded-full font-semibold uppercase text-white">
               Posted on: {props.date}
             </span>
-            <span class="mb-2 mr-2 inline-block rounded-full font-semibold text-white uppercase">
+            <span class="mb-2 mr-2 inline-block rounded-full font-semibold uppercase text-white">
               event Date: {props.eventdate}
             </span>
-            <a href={props.Url} class="inline-block underline rounded-full font-semibold text-white uppercase">
+            <a
+              href={props.Url}
+              class="inline-block rounded-full font-semibold uppercase text-white underline"
+            >
               link: {props.Url}
             </a>
           </div>
