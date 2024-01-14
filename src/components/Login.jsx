@@ -4,7 +4,8 @@ import { googleProvider } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
-  getAuth
+  getAuth,
+  sendEmailVerification
 } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
@@ -15,6 +16,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"; 
 import { useNavigate } from "react-router-dom";
+
 export default function Login() {
   return (
     <>
@@ -25,6 +27,7 @@ export default function Login() {
     </>
   );
 }
+
 function SignUp() {
   const firebaseApp = initializeApp(firebaseConfig);
   const firestore = getFirestore(firebaseApp);
@@ -35,59 +38,155 @@ function SignUp() {
   const [mob, setMob] = useState("");
   const [roll, setRoll] = useState("");
   const [branch, setBranch] = useState("");
-  const [poster, setposter] = useState("");
+  const [poster, setPoster] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
+
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isValidMobile = (mobile) => /^[0-9]{10}$/.test(mobile);
+  const isValidRoll = (roll) => /^BTECH\/10\d{3}\/\d{2}$/.test(roll);
+
   const signUp = async () => {
     try {
-      const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
-      const uploadResult = await uploadBytes(imgref, poster);
-      if(naam!=="" && mob!=="" && roll!=="" && branch!=="" && poster!==""){
+      if (
+        naam !== "" &&
+        isValidMobile(mob) &&
+        roll !== "" &&
+        branch !== "" &&
+        poster !== "" &&
+        isValidEmail(email) &&
+        isValidRoll(roll)
+      ) {
+        const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
+        const uploadResult = await uploadBytes(imgref, poster);
+
         await createUserWithEmailAndPassword(auth, email, password);
         const user = auth.currentUser;
         const uid = user.uid;
         const emailid = user.email;
-        await addDoc(collection(firestore, "users"), {
-          naam,
-          mob,
-          roll,
-          branch,
-          imageURL: uploadResult.ref.fullPath,
-          emailid,
-          uid
-        });
+        await sendEmailVerification(user);
         Swal.fire({
-          title: 'GOOD JOB!',
-          text: `Welcome BITIAN, ${naam}`,
-          icon: 'success',
-          confirmButtonText: 'Continue Logging in'
-        })
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-      }
-      else{
-        Swal.fire({
-          title: 'Error! Fields are empty',
-          text: 'Please complete your Profile',
-          icon: 'error',
+          title: 'Verify your account!',
+          text: `Email Verification Link sent to ${emailid}`,
+          icon: 'warning',
           confirmButtonText: 'OK'
-        })
+        });
+        setTimeout(async () => {
+          await addDoc(collection(firestore, "users"), {
+            naam,
+            mob,
+            roll,
+            branch,
+            imageURL: uploadResult.ref.fullPath,
+            emailid,
+            uid
+          });
+  
+          Swal.fire({
+            title: 'GOOD JOB! NOW LOGIN',
+            text: `Welcome BITIAN, ${naam}! Please check your email for verification.`,
+            icon: 'success',
+            confirmButtonText: 'Continue Logging in'
+          });
+  
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
+        }, 1000);
+      } else {
+        if (naam === "") {
+          Swal.fire({
+            title: 'Error! Name field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+
+        if (mob === "") {
+          Swal.fire({
+            title: 'Error! Mobile field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidMobile(mob)) {
+          Swal.fire({
+            title: 'Invalid Mobile Number',
+            text: 'Please enter a valid 10-digit mobile number',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+
+        if (roll === "") {
+          Swal.fire({
+            title: 'Error! Roll field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidRoll(roll)) {
+          Swal.fire({
+            title: 'Invalid Roll Number',
+            text: 'Please enter a valid roll number (e.g., BTECH/10XXX/XX)',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+
+        if (branch === "") {
+          Swal.fire({
+            title: 'Error! Branch field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+
+        if (poster === "") {
+          Swal.fire({
+            title: 'Error! Poster field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+
+        if (email === "") {
+          Swal.fire({
+            title: 'Error! Email field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidEmail(email)) {
+          Swal.fire({
+            title: 'Invalid Email Address',
+            text: 'Please enter a valid email address',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
       }
     } catch (error) {
       console.error("Error signing up:", error.message);
-      toast.error("account already exists or invalid emailid");
+      toast.error("Account already exists or invalid emailid");
     }
   };
+
   const signInWithGoogle = async () => {
     try {
-      const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
-      const uploadResult = await uploadBytes(imgref, poster);
-      if(naam!=="" && mob!=="" && roll!=="" && branch!=="" && poster!==""){
+      if (
+        naam !== "" &&
+        isValidMobile(mob) &&
+        roll !== "" &&
+        branch !== "" &&
+        poster !== "" &&
+        isValidRoll(roll)
+      ) {
+        const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
+        const uploadResult = await uploadBytes(imgref, poster);
+  
         await signInWithPopup(auth, googleProvider);
         const user = auth.currentUser;
         const uid = user.uid;
         const emailid = user.email;
+  
         await addDoc(collection(firestore, "users"), {
           naam,
           mob,
@@ -97,30 +196,94 @@ function SignUp() {
           emailid,
           uid
         });
+  
         Swal.fire({
           title: 'GOOD JOB!',
           text: `Welcome BITIAN`,
           icon: 'success',
           confirmButtonText: 'Continue Logging in'
-        })
+        });
+  
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
-        console.log("User signed in successfully!");
-      }
-      else{
-        Swal.fire({
-          title: 'Error! Fields are empty',
-          text: 'Please complete your Profile',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        })
+      } else {
+        // Fields validation
+        if (naam === "") {
+          Swal.fire({
+            title: 'Error! Name field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+  
+        if (mob === "") {
+          Swal.fire({
+            title: 'Error! Mobile field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidMobile(mob)) {
+          Swal.fire({
+            title: 'Invalid Mobile Number',
+            text: 'Please enter a valid 10-digit mobile number',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+  
+        if (roll === "") {
+          Swal.fire({
+            title: 'Error! Roll field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidRoll(roll)) {
+          Swal.fire({
+            title: 'Invalid Roll Number',
+            text: 'Please enter a valid roll number (e.g., BTECH/10XXX/XX)',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+  
+        if (branch === "") {
+          Swal.fire({
+            title: 'Error! Branch field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+  
+        if (poster === "") {
+          Swal.fire({
+            title: 'Error! Poster field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+  
+        if (email === "") {
+          Swal.fire({
+            title: 'Error! Email field is empty',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        } else if (!isValidEmail(email)) {
+          Swal.fire({
+            title: 'Invalid Email Address',
+            text: 'Please enter a valid email address',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
       }
     } catch (error) {
       console.error("Error signing in with google:", error.message);
-      toast.error("account already exists or invalid emailid");
+      toast.error("Account already exists or invalid emailid");
     }
   };
+  
 
   return (
     <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
@@ -158,15 +321,15 @@ function SignUp() {
           onChange={(e) => setBranch(e.target.value)}
         />
         <label className="drop-container" id="drop-container">
-        <span class="drop-title">Drop Your Photo here</span>
-        <input
-          type="file"
-          placeholder=""
-          className="ml-10 rounded-md border-white bg-transparent pl-4 text-center text-xl font-semibold text-gray-800"
-          autoComplete=""
-          accept="image/*"
-          onChange={(e) => setposter(e.target.files[0])}
-        />
+          <span class="drop-title">Drop Your Photo here</span>
+          <input
+            type="file"
+            placeholder=""
+            className="ml-10 rounded-md border-white bg-transparent pl-4 text-center text-xl font-semibold text-gray-800"
+            autoComplete=""
+            accept="image/*"
+            onChange={(e) => setPoster(e.target.files[0])}
+          />
         </label>
         <input
           type="text"
