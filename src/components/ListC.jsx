@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import clubdetail from "../clubdetails";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useState from "react-usestateref";
 function Headinginterest() {
   return (
@@ -82,13 +84,20 @@ function ListC() {
 export { ListC, Headinginterest };
 
 function ClubList({ ele }) {
-  const [curr, setCurr] = useState("");
+  const navigate = useNavigate();
+  const [curr, setCurr, currRef] = useState("");
 
   const Sec = async (e) => {
     setCurr(e);
-    localStorage.setItem("club", JSON.stringify(curr));
+    // localStorage.clear();
+    // localStorage.removeItem("club");
+    localStorage.setItem("club", JSON.stringify(currRef.current));
     console.log("added to local");
     const it = JSON.parse(localStorage.getItem("club"));
+    if (it) {
+      navigate("/cd");
+    }
+
     console.log(it);
     console.log("done");
   };
@@ -108,9 +117,12 @@ function ClubList({ ele }) {
             <h3 className="mb-0 pb-0 text-xl font-bold text-white">
               {ele.name}
             </h3>
-            <div className="h1 mt-0 w-36 rounded-2xl border-b-4 border-purple-950 pt-0 md:mt-4"></div>
+            <div className="h1 mt-0   w-36 rounded-2xl border-b-4 border-purple-950 pt-0 md:mt-4"></div>
             <p className="text-white">{ele.desc}</p>
-            <button className="h-15 my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500">
+            <button
+              onClick={() => Sec(ele.name)}
+              className="h-15   my-5 rounded-2xl bg-purple-500  px-2 text-center text-3xl font-bold text-white shadow hover:shadow-lg hover:shadow-purple-500"
+            >
               Visit
             </button>
           </div>
