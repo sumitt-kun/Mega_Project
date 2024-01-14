@@ -9,7 +9,7 @@ import Footer from "./Footer";
 
 export default function Home() {
   return (
-    <div className="bg-[url('/static/images/bitphoto.JPG')] bg-center bg-cover bg-fixed">
+    <div className="bg-[url('/static/images/bitphoto.JPG')] z-10 bg-center bg-cover bg-fixed">
       <Navbar />
       <Topmost />
       <Showcase />
