@@ -11,8 +11,7 @@ Web Development [FullStack]
 ## Idea
 ClubConnect is a cutting-edge full-stack web development project designed to bring college clubs and students closer together in the virtual realm. This platform serves as a centralized hub, streamlining club interactions and fostering a sense of community. With personalized profiles, intuitive event management, and Newsroom, ClubConnect makes it effortless for students to discover, join, and engage with various clubs on campus. The platform's user-friendly interface ensures seamless navigation, keep members informed about upcoming events and important updates.
 ## Tech Stack Used
-- React-Native
-- React-Navigation
+- ReactJs
 - Tailwind CSS
 - FIREBASE
   - Authentication
