@@ -157,7 +157,7 @@ function SignUp() {
           autoComplete=""
           onChange={(e) => setBranch(e.target.value)}
         />
-        <label for="images" className="drop-container" id="drop-container">
+        <label className="drop-container" id="drop-container">
         <span class="drop-title">Drop Your Photo here</span>
         <input
           type="file"
