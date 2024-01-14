@@ -2,8 +2,9 @@ import React from "react";
 import dev_details from "../developer_details";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { FaPhoneAlt } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 function Meetdev() {
   return (
     <div id="developersSection" className="my-20 bg-[url('/static/images/img-bg.jpg')]">
@@ -44,13 +45,13 @@ function Card(props) {
           <FaInstagram />
         </a>
         <a className="m-auto p-2 text-2xl" href={props.linkedin_id}>
-          <FaLinkedin></FaLinkedin>
+          <FaLinkedin />
         </a>
         <a className="m-auto p-2 text-2xl" href={props.contact}>
-          <FaPhoneAlt />
+          <FaGithub />
         </a>
         <a className="m-auto p-2 text-2xl" href={props.portfolio}>
-          <FaExternalLinkAlt />
+          <FaCode />
         </a>
       </div>
     </div>
