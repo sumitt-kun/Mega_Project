@@ -60,13 +60,10 @@ function Sign() {
       const result = await signInWithPopup(auth, googleProvider);
       const user = auth.currentUser;
       const name = user.name;
-      console.log("user logged in successfully");
-      Swal.fire({
-        title: 'GOOD JOB!',
-        text: `Welcome BITIAN, ${name}`,
-        icon: 'success',
-        confirmButtonText: 'OK'
-      })
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
       console.log("User signed in successfully!");
       localStorage.setItem("user", JSON.stringify(result));
       setTimeout(() => {

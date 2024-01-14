@@ -3,7 +3,7 @@ import clubdetail from "../clubdetails";
 
 function Dashmain(){
     return( 
-        <div className="md:grid md:grid-cols-4 bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
+        <div className="md:grid md:grid-cols-3 lg:grid-cols-4 bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
             {clubdetail.map((ele)=>(    
             <ClubList ele={ele} key={ele.id}/> 
             ))}

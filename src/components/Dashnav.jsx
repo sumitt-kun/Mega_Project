@@ -12,10 +12,10 @@ const Navfunc = ({props}) => {
     return(
       <>
       <nav>
-        <div className="hidden md:flex justify-center">
+        <div className="hidden lg:flex justify-center">
           <Sidebar />
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button className="p-3" onClick={toggleNavbar}>{isOpen ? <FaRegWindowClose className="text-white" size={32} /> : <FaBars className="text-white" size={32}/>}</button>
         </div>
       </nav>
