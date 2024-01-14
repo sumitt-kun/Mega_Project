@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { getAuth } from "firebase/auth";
 import {
   getFirestore,
   collection,
-  getDocs,
+  getDocs
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
@@ -14,18 +15,20 @@ const storage = getStorage(firebaseApp);
 
 export default function Applications() {
   return (
-    <div>
-      <h1 className="text-xl font-bold">Applications</h1>
+    <div className="h-screen bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed">
+      <h1 className="text-2xl p-3 font-bold text-white m-auto text-center">Applications</h1>
       <Content />
     </div>
   );
 }
 
 const fetchApplications = async () => {
-  const admin = JSON.parse(localStorage.getItem('user'));
-  const email = admin?.user?.email;
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const email = user.email;
   const index = email.indexOf('@');
   const collname = email.slice(0, index);
+  console.log(collname);
   return getDocs(collection(firestore, collname));
 }
 
@@ -46,35 +49,34 @@ const Content = () => {
 
 function Card(props) {
   return (
-    <div class="max-w-sm overflow-hidden rounded shadow-lg">
-      <div class="px-6 py-4">
-        <div class="mb-2 text-xl font-bold">{props.name}</div>
-        <p class="text-base text-gray-700">
-          This application was posted by {props.name}
-        </p>
-      </div>
-      <div class="px-6 pb-2 pt-4">
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          recieved on: {props.datetime}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Branch: {props.branch}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Roll No: {props.roll}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Mobile: {props.phone}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Why join: {props.message}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Batch: {props.batch}
-        </span>
-        <span class="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
-          Account Id: {props.email}
-        </span>
+    <div className="bg-white overflow-hidden bg-[url('/static/images/dashbg.jpg')] bg-no-repeat bg-center bg-cover bg-fixed shadow-sm sm:rounded-lg p-6 mb-6">
+      <div className="mx-auto">
+        <table className="min-w-full text-white bg-gradient-to-r from-pink-800 to-red-500 bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b">Time</th>
+              <th className="py-2 px-4 border-b">Name</th>
+              <th className="py-2 px-4 border-b">Branch</th>
+              <th className="py-2 px-4 border-b">Roll</th>
+              <th className="py-2 px-4 border-b">Mobile</th>
+              <th className="py-2 px-4 border-b">Why Join</th>
+              <th className="py-2 px-4 border-b">Batch</th>
+              <th className="py-2 px-4 border-b">Mail ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2 px-4 border-b">{props.datetime}</td>
+              <td className="py-2 px-4 border-b">{props.name.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.branch.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.roll.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.phone.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.message.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.batch.toUpperCase()}</td>
+              <td className="py-2 px-4 border-b">{props.email.toUpperCase()}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

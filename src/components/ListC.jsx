@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useState from "react-usestateref";
 function Headinginterest() {
   return (
-    <div className="">
+    <div id="clubListSection" className="">
       <h2 className="mt-20 bg-gradient-to-r from-red-600 to-pink-800 p-5 text-left font-serif text-5xl text-white md:text-6xl">
         Find Your Interests
       </h2>

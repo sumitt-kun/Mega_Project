@@ -11,6 +11,7 @@ function Footer() {
   const storage = getStorage(firebaseApp);
   const [rev, setRev] = useState("");
   const [Name, setName] = useState("");
+  
   const addRev = async () => {
     await addDoc(collection(firestore, "reviews"), {
       Name,
@@ -19,28 +20,76 @@ function Footer() {
     toast.success("Thanks for your review!");
     console.log("done");
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToDevelopers = () => {
+    const developersSection = document.getElementById("developersSection");
+    if (developersSection) {
+      developersSection.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const scrollToClubs = () => {
+    const clubListSection = document.getElementById("clubListSection");
+    if (clubListSection) {
+      clubListSection.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="grid bg-black  p-16 text-gray-400 md:grid-cols-3">
+    <div className="grid bg-black p-16 text-gray-400 md:grid-cols-3">
       <Toaster />
       <div className="text-center leading-10">
         <p>All Rights Reserved</p>
         <p>Copyright @2023</p>
-        <a href="https://pearlcrestsociety.in/">BITCLUBCONNECT.com</a>
+        <a href="https://pearlcrestsociety.in/" onClick={scrollToTop}>
+          BITCLUBCONNECT.com
+        </a>
       </div>
       <div>
         <ul className="text-center leading-10">
           <li>
-            <button>Home</button>
+            <button
+              className="text-white hover:text-gray-300 focus:outline-none"
+              onClick={scrollToTop}
+            >
+              Home
+            </button>
           </li>
           <li>
-            <button>About</button>
+            <button
+              className="text-white hover:text-gray-300 focus:outline-none"
+              onClick={scrollToTop}
+            >
+              About
+            </button>
           </li>
           <li></li>
           <li>
-            <button>Meet the Developers</button>
+            <button
+              className="text-white hover:text-gray-300 focus:outline-none"
+              onClick={scrollToDevelopers}
+            >
+              Meet the Developers
+            </button>
           </li>
           <li>
-            <button>Login</button>
+            <button
+              className="text-white hover:text-gray-300 focus:outline-none"
+              onClick={scrollToClubs}
+            >
+              Explore Clubs
+            </button>
           </li>
         </ul>
       </div>
@@ -49,20 +98,26 @@ function Footer() {
         <input
           type="text"
           placeholder="Name"
-          className="text-center"
+          className="text-center px-4 py-2 rounded-md border"
           autoComplete="Name"
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Enter your review"
-          className="h-20 text-center"
+          className="h-20 text-center px-4 py-2 rounded-md border"
           autoComplete=""
           onChange={(e) => setRev(e.target.value)}
         />
-        <button onClick={addRev}>Submit</button>
+        <button
+          onClick={addRev}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
 }
+
 export default Footer;
