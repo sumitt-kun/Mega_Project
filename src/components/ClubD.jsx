@@ -10,6 +10,7 @@ import {
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { GridLoader } from "react-spinners";
 
 const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
@@ -18,7 +19,7 @@ export default function Sample() {
   let na = localStorage.getItem("club");
   console.log(na);
   return (
-    <div className="flex h-screen flex-col bg-[url('/static/images/dashbg.jpg')] text-white bg-no-repeat bg-center bg-cover bg-fixed items-center justify-evenly px-[10%] text-center">
+    <div className="flex h-screen flex-col items-center justify-evenly bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat px-[10%] text-center text-white">
       <ClubData />
     </div>
   );
@@ -55,17 +56,36 @@ function Bot(props) {
   useEffect(() => {
     getImageUrl(props.imageURL).then((url) => setimurl(url));
   }, [props.imageURL]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
   return (
     <div>
-      <h1 className="m-3 p-3 text-2xl font-extrabold">{props.name}</h1>
-      <div className="rounded-xl p-0">
-        <img
-          src={imurl}
-          className="m-auto mb-3 h-[30%] w-[30%] rounded-xl pb-3"
+      {loading ? (
+        <GridLoader
+          color={`#54236D`}
+          loading={loading}
+          // cssOverride={override}
+          size={100}
         />
-      </div>
+      ) : (
+        <div>
+          <h1 className="m-3 p-3 text-2xl font-extrabold">{props.name}</h1>
+          <div className="rounded-xl p-0">
+            <img
+              src={imurl}
+              alt="club"
+              className="m-auto mb-3 h-[30%] w-[30%] rounded-xl pb-3"
+            />
+          </div>
 
-      <p className="text-xl font-semibold">{props.de}</p>
+          <p className="text-xl font-semibold">{props.de}</p>
+        </div>
+      )}
     </div>
   );
 }
