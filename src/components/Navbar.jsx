@@ -63,7 +63,7 @@ function Navbar() {
             </button>
           </li>
           <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-8 text-5xl font-bold text-transparent hover:shadow-red-500">
-            <Link to="/dashboard">
+            <Link to="/signin">
               <button
                 onClick={refreshPage}
                 className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"
