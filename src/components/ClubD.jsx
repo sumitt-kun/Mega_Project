@@ -19,7 +19,7 @@ export default function Sample() {
   let na = localStorage.getItem("club");
   console.log(na);
   return (
-    <div className="flex h-screen flex-col items-center justify-evenly bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat px-[10%] text-center text-white">
+    <div className="flex h-full m-auto p-5 flex-col items-center justify-evenly bg-[url('/static/images/dashbg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat px-[10%] text-center text-white">
       <ClubData />
     </div>
   );
@@ -70,6 +70,7 @@ function Bot(props) {
           color={`#54236D`}
           loading={loading}
           // cssOverride={override}
+          className="h-screen"
           size={100}
         />
       ) : (
