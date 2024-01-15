@@ -5,18 +5,20 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
   getAuth,
-  sendEmailVerification
+  sendEmailVerification,
 } from "firebase/auth";
+import { GridLoader } from "react-spinners";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { uploadBytes, getStorage, ref } from "firebase/storage";
 import { toast, Toaster } from "react-hot-toast";
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import useState from "react-usestateref";
+// import useStateRef from "react-usestateref";
 export default function Login() {
   return (
     <>
@@ -41,12 +43,14 @@ function SignUp() {
   const [poster, setPoster] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
+  const [spin, setSpin, spinRef] = useState(false);
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidMobile = (mobile) => /^[0-9]{10}$/.test(mobile);
   const isValidRoll = (roll) => /^BTECH\/10\d{3}\/\d{2}$/.test(roll);
 
   const signUp = async () => {
+    setSpin(true);
     try {
       if (
         naam !== "" &&
@@ -57,7 +61,10 @@ function SignUp() {
         isValidEmail(email) &&
         isValidRoll(roll)
       ) {
-        const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
+        const imgref = ref(
+          storage,
+          `uploads/users/${Date.now()}-${poster.name}`,
+        );
         const uploadResult = await uploadBytes(imgref, poster);
 
         await createUserWithEmailAndPassword(auth, email, password);
@@ -66,10 +73,10 @@ function SignUp() {
         const emailid = user.email;
         await sendEmailVerification(user);
         Swal.fire({
-          title: 'Verify your account!',
+          title: "Verify your account!",
           text: `Email Verification Link sent to ${emailid}`,
-          icon: 'warning',
-          confirmButtonText: 'OK'
+          icon: "warning",
+          confirmButtonText: "OK",
         });
         setTimeout(async () => {
           await addDoc(collection(firestore, "users"), {
@@ -79,16 +86,16 @@ function SignUp() {
             branch,
             imageURL: uploadResult.ref.fullPath,
             emailid,
-            uid
+            uid,
           });
-  
+
           Swal.fire({
-            title: 'GOOD JOB! NOW LOGIN',
+            title: "GOOD JOB! NOW LOGIN",
             text: `Welcome BITIAN, ${naam}! Please check your email for verification.`,
-            icon: 'success',
-            confirmButtonText: 'Continue Logging in'
+            icon: "success",
+            confirmButtonText: "Continue Logging in",
           });
-  
+
           setTimeout(() => {
             navigate("/dashboard");
           }, 1000);
@@ -96,70 +103,70 @@ function SignUp() {
       } else {
         if (naam === "") {
           Swal.fire({
-            title: 'Error! Name field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Name field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
 
         if (mob === "") {
           Swal.fire({
-            title: 'Error! Mobile field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Mobile field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidMobile(mob)) {
           Swal.fire({
-            title: 'Invalid Mobile Number',
-            text: 'Please enter a valid 10-digit mobile number',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Mobile Number",
+            text: "Please enter a valid 10-digit mobile number",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
 
         if (roll === "") {
           Swal.fire({
-            title: 'Error! Roll field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Roll field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidRoll(roll)) {
           Swal.fire({
-            title: 'Invalid Roll Number',
-            text: 'Please enter a valid roll number (e.g., BTECH/10XXX/XX)',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Roll Number",
+            text: "Please enter a valid roll number (e.g., BTECH/10XXX/XX)",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
 
         if (branch === "") {
           Swal.fire({
-            title: 'Error! Branch field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Branch field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
 
         if (poster === "") {
           Swal.fire({
-            title: 'Error! Poster field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Poster field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
 
         if (email === "") {
           Swal.fire({
-            title: 'Error! Email field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Email field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidEmail(email)) {
           Swal.fire({
-            title: 'Invalid Email Address',
-            text: 'Please enter a valid email address',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Email Address",
+            text: "Please enter a valid email address",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
       }
@@ -167,6 +174,7 @@ function SignUp() {
       console.error("Error signing up:", error.message);
       toast.error("Account already exists or invalid emailid");
     }
+    setSpin(false);
   };
 
   const signInWithGoogle = async () => {
@@ -179,14 +187,17 @@ function SignUp() {
         poster !== "" &&
         isValidRoll(roll)
       ) {
-        const imgref = ref(storage, `uploads/users/${Date.now()}-${poster.name}`);
+        const imgref = ref(
+          storage,
+          `uploads/users/${Date.now()}-${poster.name}`,
+        );
         const uploadResult = await uploadBytes(imgref, poster);
-  
+
         await signInWithPopup(auth, googleProvider);
         const user = auth.currentUser;
         const uid = user.uid;
         const emailid = user.email;
-  
+
         await addDoc(collection(firestore, "users"), {
           naam,
           mob,
@@ -194,16 +205,16 @@ function SignUp() {
           branch,
           imageURL: uploadResult.ref.fullPath,
           emailid,
-          uid
+          uid,
         });
-  
+
         Swal.fire({
-          title: 'GOOD JOB!',
+          title: "GOOD JOB!",
           text: `Welcome BITIAN`,
-          icon: 'success',
-          confirmButtonText: 'Continue Logging in'
+          icon: "success",
+          confirmButtonText: "Continue Logging in",
         });
-  
+
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
@@ -211,70 +222,70 @@ function SignUp() {
         // Fields validation
         if (naam === "") {
           Swal.fire({
-            title: 'Error! Name field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Name field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-  
+
         if (mob === "") {
           Swal.fire({
-            title: 'Error! Mobile field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Mobile field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidMobile(mob)) {
           Swal.fire({
-            title: 'Invalid Mobile Number',
-            text: 'Please enter a valid 10-digit mobile number',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Mobile Number",
+            text: "Please enter a valid 10-digit mobile number",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-  
+
         if (roll === "") {
           Swal.fire({
-            title: 'Error! Roll field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Roll field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidRoll(roll)) {
           Swal.fire({
-            title: 'Invalid Roll Number',
-            text: 'Please enter a valid roll number (e.g., BTECH/10XXX/XX)',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Roll Number",
+            text: "Please enter a valid roll number (e.g., BTECH/10XXX/XX)",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-  
+
         if (branch === "") {
           Swal.fire({
-            title: 'Error! Branch field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Branch field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-  
+
         if (poster === "") {
           Swal.fire({
-            title: 'Error! Poster field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Poster field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
-  
+
         if (email === "") {
           Swal.fire({
-            title: 'Error! Email field is empty',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Error! Email field is empty",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         } else if (!isValidEmail(email)) {
           Swal.fire({
-            title: 'Invalid Email Address',
-            text: 'Please enter a valid email address',
-            icon: 'error',
-            confirmButtonText: 'OK'
+            title: "Invalid Email Address",
+            text: "Please enter a valid email address",
+            icon: "error",
+            confirmButtonText: "OK",
           });
         }
       }
@@ -283,40 +294,48 @@ function SignUp() {
       toast.error("Account already exists or invalid emailid");
     }
   };
-  
 
   return (
     <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
       <div className="flex h-screen flex-col items-center justify-evenly">
-        <h1 className="text p-2 bg-transparent bg-clip-text text-4xl font-bold text-white">
+        {spinRef.current && (
+          <GridLoader
+            color={`#54236D`}
+            loading={spinRef.current}
+            // cssOverride={override}
+            className="z-20 h-screen"
+            size={100}
+          />
+        )}
+        <h1 className="text bg-transparent bg-clip-text p-2 text-4xl font-bold text-white">
           Create Account
         </h1>
         <input
           type="text"
           placeholder="Enter Full Name"
-          className="text-l h-5 p-2 rounded-md bg-transparent text-center font-semibold text-white"
+          className="text-l h-5 rounded-md bg-transparent p-2 text-center font-semibold text-white"
           autoComplete=""
           onChange={(e) => setNaam(e.target.value)}
         />
         <input
           type="text"
           placeholder="Enter mobile number"
-          className="text-l p-2 rounded-md border-white bg-transparent text-center font-semibold text-white"
+          className="text-l rounded-md border-white bg-transparent p-2 text-center font-semibold text-white"
           autoComplete="mob"
           onChange={(e) => setMob(e.target.value)}
         />
         <input
           type="text"
           placeholder=" Roll: BTECH/10XXX/22"
-          className="text-l p-2 rounded-md border-white bg-transparent text-center font-semibold text-white"
+          className="text-l rounded-md border-white bg-transparent p-2 text-center font-semibold text-white"
           autoComplete=""
           onChange={(e) => setRoll(e.target.value)}
         />
         <input
           type="text"
           placeholder="Branch"
-          className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
+          className="rounded-md border-white bg-transparent p-2 text-center text-xl font-semibold text-white"
           autoComplete=""
           onChange={(e) => setBranch(e.target.value)}
         />
@@ -334,18 +353,18 @@ function SignUp() {
         <input
           type="text"
           placeholder="Email"
-          className="rounded-md p-2 border-white bg-transparent text-center text-xl font-semibold text-white"
+          className="rounded-md border-white bg-transparent p-2 text-center text-xl font-semibold text-white"
           autoComplete="email"
           onChange={(e) => setEmail(e.target.value.toLowerCase())}
         />
         <input
           type="password"
           placeholder="Enter Password"
-          className="rounded-sm p-2 bg-transparent text-center text-xl text-white"
+          className="rounded-sm bg-transparent p-2 text-center text-xl text-white"
           autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="text-white p-2" onClick={signUp}>
+        <button className="p-2 text-white" onClick={signUp}>
           Sign Up
         </button>
         <div className="flex gap-3">
@@ -356,7 +375,7 @@ function SignUp() {
         </div>
 
         <Link to="/signin">
-          <button className="text-xl p-2 text-white hover:shadow-white">
+          <button className="p-2 text-xl text-white hover:shadow-white">
             Existing User? Login
           </button>
         </Link>
