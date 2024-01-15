@@ -175,8 +175,7 @@ function SignUp() {
         isValidMobile(mob) &&
         roll !== "" &&
         branch !== "" &&
-        poster !== "" &&
-        isValidRoll(roll)
+        poster !== ""
       ) {
         const imgref = ref(
           storage,
