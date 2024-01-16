@@ -52,7 +52,7 @@ function Footer() {
       <div className="text-center leading-10">
         <p>All Rights Reserved</p>
         <p>Copyright @2023</p>
-        <a href="https://pearlcrestsociety.in/" onClick={scrollToTop}>
+        <a href="" onClick={scrollToTop}>
           ClubConnect.com
         </a>
       </div>

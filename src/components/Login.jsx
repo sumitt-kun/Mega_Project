@@ -22,9 +22,11 @@ import useState from "react-usestateref";
 export default function Login() {
   return (
     <>
-      <div className="flex h-full w-full flex-col items-center  justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center p-2">
-        <HomeBtn />
-        <SignUp />
+      <div className="flex h-full w-full flex-col items-center justify-center bg-[url('/static/images/back_img.jpg')] bg-cover bg-fixed bg-center p-2">
+        <div className="flex flex-col items-center justify-center h-full w-full">
+          <HomeBtn />
+          <SignUp />
+        </div>
       </div>
     </>
   );
@@ -278,21 +280,21 @@ function SignUp() {
   };
 
   return (
-    <div className="h-[100%] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
+    <div className="h-[50rem] w-[25rem] rounded-3xl bg-white bg-opacity-20 lg:w-[40%]">
       <Toaster />
-      <div className="flex h-screen flex-col items-center justify-evenly">
-        {spinRef.current && (
-          <GridLoader
-            color={`#54236D`}
-            loading={spinRef.current}
-            // cssOverride={override}
-            className="z-20 h-screen"
-            size={100}
-          />
-        )}
+      <div className="flex h-full flex-col items-center justify-evenly">
         <h1 className="text bg-transparent bg-clip-text p-2 text-4xl font-bold text-white">
           Create Account
         </h1>
+        {spinRef.current && (
+            <GridLoader
+              color={`#54236D`}
+              loading={spinRef.current}
+              // cssOverride={override}
+              className="absolute z-20 bg- m-auto w-screen"
+              size={100}
+            />
+          )}  
         <input
           type="text"
           placeholder="Enter Full Name"
@@ -322,7 +324,7 @@ function SignUp() {
           onChange={(e) => setBranch(e.target.value)}
         />
         <label className="drop-container" id="drop-container">
-          <span class="drop-title">Drop Your Photo here</span>
+          <span className="drop-title">Drop Your Photo here</span>
           <input
             type="file"
             placeholder=""
