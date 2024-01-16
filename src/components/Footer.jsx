@@ -118,7 +118,7 @@ function Footer() {
         <div className="flex flex-col items-center">
           {spinRef.current && (
             <GridLoader
-              color={`#54236D`}
+              color={`#FFF`}
               loading={spinRef.current}
               // cssOverride={override}
               className="z-20 h-screen"
@@ -138,4 +138,3 @@ function Footer() {
 }
 
 export default Footer;
-  
