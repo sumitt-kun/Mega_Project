@@ -59,6 +59,7 @@ function SignUp() {
         roll !== "" &&
         branch !== "" &&
         poster !== "" &&
+        password !=="" &&
         isValidEmail(email)
       ) {
         const imgref = ref(
@@ -158,6 +159,13 @@ function SignUp() {
           Swal.fire({
             title: "Invalid Email Address",
             text: "Please enter a valid email address",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+        if (password === "") {
+          Swal.fire({
+            title: "Error! Pssword field is empty",
             icon: "error",
             confirmButtonText: "OK",
           });
@@ -268,6 +276,13 @@ function SignUp() {
           Swal.fire({
             title: "Invalid Email Address",
             text: "Please enter a valid email address",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+        if (password === "") {
+          Swal.fire({
+            title: "Error! Pssword field is empty",
             icon: "error",
             confirmButtonText: "OK",
           });
