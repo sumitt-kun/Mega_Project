@@ -21,15 +21,15 @@ const firebaseApp = initializeApp(firebaseConfig);
 const storage = getStorage(firebaseApp);
 
 const getuserbyuid = async () => {
-    const firestore = getFirestore(firebaseApp);
-    const collectionRef = collection(firestore, "users");
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user.uid;
-    console.log(uid);
-    const q = query(collectionRef, where("uid", "==", uid));
-    const result = await getDocs(q);
-    return result;
+  const firestore = getFirestore(firebaseApp);
+  const collectionRef = collection(firestore, "users");
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const uid = user.uid;
+  console.log(uid);
+  const q = query(collectionRef, where("uid", "==", uid));
+  const result = await getDocs(q);
+  return result;
 }
 
 const getImageUrl = async (path) => {
