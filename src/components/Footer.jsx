@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import { uploadBytes, getStorage, ref } from "firebase/storage";
 import { toast, Toaster } from "react-hot-toast";
+import useState from "react-usestateref";
+import { GridLoader } from "react-spinners";
 
 function Footer() {
   const firebaseApp = initializeApp(firebaseConfig);
@@ -11,14 +13,18 @@ function Footer() {
   const storage = getStorage(firebaseApp);
   const [rev, setRev] = useState("");
   const [Name, setName] = useState("");
-  
+
+  const [spin, setSpin, spinRef] = useState(false);
+
   const addRev = async () => {
+    setSpin(true);
     await addDoc(collection(firestore, "reviews"), {
       Name,
       rev,
     });
     toast.success("Thanks for your review!");
     console.log("done");
+    setSpin(false);
   };
 
   const scrollToTop = () => {
@@ -98,23 +104,34 @@ function Footer() {
         <input
           type="text"
           placeholder="Name"
-          className="text-center px-4 py-2 rounded-md border"
+          className="rounded-md border px-4 py-2 text-center"
           autoComplete="Name"
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Enter your review"
-          className="h-20 text-center px-4 py-2 rounded-md border"
+          className="h-20 rounded-md border px-4 py-2 text-center"
           autoComplete=""
           onChange={(e) => setRev(e.target.value)}
         />
-        <button
-          onClick={addRev}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Submit
-        </button>
+        <div className="flex flex-col items-center">
+          {spinRef.current && (
+            <GridLoader
+              color={`#54236D`}
+              loading={spinRef.current}
+              // cssOverride={override}
+              className="z-20 h-screen"
+              size={10}
+            />
+          )}
+          <button
+            onClick={addRev}
+            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

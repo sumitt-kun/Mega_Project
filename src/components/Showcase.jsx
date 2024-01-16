@@ -18,7 +18,7 @@ function Showcase() {
               className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
                 text-center hover:opacity-80 md:text-4xl"
             >
-              Register Now
+              Create Account
             </button>
           </Link>
         </div>
