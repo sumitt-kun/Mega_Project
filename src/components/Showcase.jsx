@@ -35,7 +35,7 @@ function Showcase() {
                 text-center hover:opacity-80 md:text-4xl"
                 onClick={refreshPage}
             >
-              Register Now
+              Create Account
             </button>
           </Link>
         </div>
