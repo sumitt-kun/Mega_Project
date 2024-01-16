@@ -53,7 +53,7 @@ function Footer() {
         <p>All Rights Reserved</p>
         <p>Copyright @2023</p>
         <a href="https://pearlcrestsociety.in/" onClick={scrollToTop}>
-          BITCLUBCONNECT.com
+          ClubConnect.com
         </a>
       </div>
       <div>
@@ -121,3 +121,4 @@ function Footer() {
 }
 
 export default Footer;
+  
