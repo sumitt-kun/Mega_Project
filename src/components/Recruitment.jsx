@@ -49,16 +49,6 @@ export default function Recruit() {
       return;
     }
 
-    if (!isValidRoll(roll)) {
-      Swal.fire({
-        title: "Invalid Roll Number",
-        text: "Please enter a valid BTECH/10XXX/XX roll number.",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-      return;
-    }
-
     if (!isValidBatch(batch)) {
       Swal.fire({
         title: "Invalid Batch",

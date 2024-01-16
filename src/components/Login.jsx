@@ -47,7 +47,6 @@ function SignUp() {
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidMobile = (mobile) => /^[0-9]{10}$/.test(mobile);
-  const isValidRoll = (roll) => /^BTECH\/10\d{3}\/\d{2}$/.test(roll);
 
   const signUp = async () => {
     setSpin(true);
@@ -58,8 +57,7 @@ function SignUp() {
         roll !== "" &&
         branch !== "" &&
         poster !== "" &&
-        isValidEmail(email) &&
-        isValidRoll(roll)
+        isValidEmail(email)
       ) {
         const imgref = ref(
           storage,
@@ -130,13 +128,6 @@ function SignUp() {
             icon: "error",
             confirmButtonText: "OK",
           });
-        } else if (!isValidRoll(roll)) {
-          Swal.fire({
-            title: "Invalid Roll Number",
-            text: "Please enter a valid roll number (e.g., BTECH/10XXX/XX)",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
         }
 
         if (branch === "") {
@@ -184,8 +175,7 @@ function SignUp() {
         isValidMobile(mob) &&
         roll !== "" &&
         branch !== "" &&
-        poster !== "" &&
-        isValidRoll(roll)
+        poster !== ""
       ) {
         const imgref = ref(
           storage,
@@ -219,7 +209,6 @@ function SignUp() {
           navigate("/dashboard");
         }, 1000);
       } else {
-        // Fields validation
         if (naam === "") {
           Swal.fire({
             title: "Error! Name field is empty",
@@ -246,13 +235,6 @@ function SignUp() {
         if (roll === "") {
           Swal.fire({
             title: "Error! Roll field is empty",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        } else if (!isValidRoll(roll)) {
-          Swal.fire({
-            title: "Invalid Roll Number",
-            text: "Please enter a valid roll number (e.g., BTECH/10XXX/XX)",
             icon: "error",
             confirmButtonText: "OK",
           });
