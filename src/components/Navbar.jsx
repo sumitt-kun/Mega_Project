@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsMenuButtonWideFill } from "react-icons/bs";
+import { getAuth } from "firebase/auth";
 function Navbar() {
   const [nav, setNav] = useState(false);
   const handleNav = () => {
@@ -15,9 +16,18 @@ function Navbar() {
   function refreshPage() {
     setTimeout(() => {
       window.location.reload(false);
-    }, 500);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    }, 500)
     console.log("page to reload");
   }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  let str = ""
+  if(user) str = "/dashboard"
+  else str = "/signin" 
   return (
     <div className="absolute grid w-full grid-cols-3 items-center justify-between p-4">
       <div className="z-20">
@@ -66,7 +76,7 @@ function Navbar() {
             </button>
           </li>
           <li className="bg-gradient-to-r from-pink-800 to-red-500 bg-clip-text  p-5 text-5xl font-bold text-transparent hover:shadow-red-500">
-            <Link to="/signin">
+            <Link to={str}>
               <button
                 onClick={refreshPage}
                 className="px-4 py-2 shadow-lg hover:text-white hover:shadow-red-500 focus:outline-none focus:ring focus:ring-violet-300"

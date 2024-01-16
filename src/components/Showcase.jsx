@@ -1,6 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 function Showcase() {
+  function refreshPage() {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+      window.location.reload(false);
+    }, 500)
+    console.log("page to reload");
+  }
+  const auth = getAuth();
+  const user = auth.currentUser;
+  let str = ""
+  if(user) str = "/dashboard"
+  else str = "/login" 
   return (
     <div className="grid-cols-2 md:grid">
       <div className="md:p-auto justify-center bg-gradient-to-r from-pink-800 to-red-500 align-middle text-white md:p-5">
@@ -13,10 +29,11 @@ function Showcase() {
           </p>
         </div>
         <div className="grid grid-cols-2">
-          <Link to="/login">
+          <Link to={str}>
             <button
               className="h14 m-5 mt-10 w-full rounded-2xl border-4 bg-gradient-to-r from-red-700 to-pink-800 p-5 
                 text-center hover:opacity-80 md:text-4xl"
+                onClick={refreshPage}
             >
               Register Now
             </button>
